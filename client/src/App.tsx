@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "./components/form/Form";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Header } from './components/header/Header';
+import { Header } from './components/Header';
 
 const useStyles = makeStyles(
   createStyles({
