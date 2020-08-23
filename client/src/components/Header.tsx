@@ -1,6 +1,7 @@
-import React from "react";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import React from "react"
+import { makeStyles, createStyles } from "@material-ui/core/styles"
 
+const ibm_logo = require("../assets/ibm_logo.svg")
 
 const useStyles = makeStyles(
   createStyles({
@@ -24,7 +25,7 @@ export const Header = () => {
   return (
     <header className={classes.header}>
       <div className={classes.headerContainer}>
-        <img src="../../../images/ibm_logo-black 1.svg" alt="logo" />
+        <img src={ibm_logo} alt="logo" />
       </div>
     </header>
   )

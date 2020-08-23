@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "./components/form/Form";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Header } from './components/Header';
 
@@ -23,9 +22,6 @@ const App: React.FC = () => {
   return (
     <div className={classes.app}>
       <Header />
-      <main className={classes.appContainer}>
-        <Form />
-      </main>
     </div>
   );
 };
