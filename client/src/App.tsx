@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Header } from './components/Header';
+import { Content } from "./components/Content";
 
 const useStyles = makeStyles(
   createStyles({
@@ -16,6 +17,7 @@ const App: React.FC = () => {
   return (
     <div className={classes.app}>
       <Header />
+      <Content />
     </div>
   );
 };

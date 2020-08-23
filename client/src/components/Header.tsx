@@ -1,13 +1,14 @@
 import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 import { ButtonBase, Theme } from "@material-ui/core";
+import { IBM_Default_Color } from "../base/types/ColorBase";
 
 const ibm_logo = require("../assets/ibm_logo.svg")
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     header: {
-      backgroundColor: '#FFFFFF'
+      backgroundColor: IBM_Default_Color.white
     },
     header__logo: {
       padding: theme.spacing(2, 2, 2, 5)
