@@ -5,13 +5,7 @@ import { Header } from './components/Header';
 const useStyles = makeStyles(
   createStyles({
     app: {
-      backgroundColor: '#E5E5E5',
-      with: '100%',
-      height: '100vh'
-    },
-    appContainer: {
-      maxWidth: '1440px',
-      margin: '0 auto',
+      width: '100%'
     }
   })
 );
