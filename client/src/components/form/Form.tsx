@@ -3,7 +3,6 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Input } from '../input/Input';
 import { FormInput } from '../../interfaces'
 import isEmail from 'validator/lib/isEmail';
-import { relative } from "path";
 
 const useStyles = makeStyles(
   createStyles({
@@ -15,6 +14,7 @@ const useStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      backgroundColor: '#FFFFFF'
     },
     image: {
       marginTop: '53px'
