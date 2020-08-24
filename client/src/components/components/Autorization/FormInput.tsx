@@ -1,8 +1,8 @@
 import React from "react"
-import clsx from 'clsx';
+import clsx from 'clsx'
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
-import { IFormInput } from "./type";
-import { IBM_Default_Color } from "../../base/types/ColorBase";
+import { IFormInput } from "./type"
+import { IBM_Default_Color } from "../../../base/types/ColorBase"
 
 type Props = {
     value: string | number | readonly string[] | undefined,

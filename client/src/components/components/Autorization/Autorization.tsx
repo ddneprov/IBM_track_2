@@ -1,9 +1,9 @@
 import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
-import { IBM_Default_Color } from "../../base/types/ColorBase";
+import { IBM_Default_Color } from "../../../base/types/ColorBase";
 import { Theme, Typography } from "@material-ui/core";
 
-import profileIcon_Default from "../../assets/profileIcon_Default.png"
+import profileIcon_Default from "../../../assets/profileIcon_Default.png"
 import { AutorizationForm } from "./AutorizationForm";
 
 const useStyles = makeStyles((theme: Theme) =>
