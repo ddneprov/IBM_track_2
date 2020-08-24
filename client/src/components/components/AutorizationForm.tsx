@@ -53,7 +53,7 @@ export const AutorizationForm: React.FC = () => {
                     <FormInput label={inputs.login.label}
                         value={values.Login}
                         placeholder={inputs.login.placeholder}
-                        isValid={errors.Login && touched.Login}
+                        isError={errors.Login && touched.Login}
                         errorMessage={errors.Login}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
@@ -61,7 +61,7 @@ export const AutorizationForm: React.FC = () => {
                     <FormInput label={inputs.password.label}
                         value={values.Password}
                         placeholder={inputs.password.placeholder}
-                        isValid={errors.Password && touched.Password}
+                        isError={errors.Password && touched.Password}
                         errorMessage={errors.Password}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
