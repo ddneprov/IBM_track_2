@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
-import { AutorizationForm } from "./components/AutorizationForm";
+import { Autorization } from "./components/Autorization";
 
 const useStyles = makeStyles(
     createStyles({
@@ -17,6 +17,6 @@ export const Content: React.FC = () => {
     const classes = useStyles()
 
     return (<div className={classes.content}>
-        <AutorizationForm />
+        <Autorization />
     </div>)
 }
