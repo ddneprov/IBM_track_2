@@ -1,5 +1,6 @@
 import React from "react"
 import { Formik } from "formik";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import * as Yup from "yup";
 
 import { IFormInput } from "./type";
@@ -10,7 +11,17 @@ interface IFormState {
     password: IFormInput
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        autorizationForm: {
+            //margin: theme.spacing(5)
+        }
+    })
+)
+
 export const AutorizationForm: React.FC = () => {
+
+    const classes = useStyles()
 
     const inputs: IFormState = {
         login: {
@@ -49,7 +60,8 @@ export const AutorizationForm: React.FC = () => {
                 handleSubmit,
             } = props;
             return (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}
+                      className={classes.autorizationForm}>
                     <FormInput label={inputs.login.label}
                         value={values.Login}
                         placeholder={inputs.login.placeholder}

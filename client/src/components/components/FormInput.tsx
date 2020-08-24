@@ -14,6 +14,9 @@ type Props = {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        form__container: {
+            margin: theme.spacing(3)
+        },
         form__label: {
             display: 'block',
             fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
@@ -52,7 +55,7 @@ export const FormInput: React.FC<Props> = ({
 
     const classes = useStyles()
 
-    return (<>
+    return (<div className={classes.form__container}>
         <label htmlFor={label}
             className={clsx(classes.form__label, {
                 [classes.error]: isError
@@ -74,5 +77,5 @@ export const FormInput: React.FC<Props> = ({
         {isError && (
             <div className={clsx(classes.error, classes.error__message)}>{errorMessage}</div>
         )}
-    </>)
+    </div>)
 }
