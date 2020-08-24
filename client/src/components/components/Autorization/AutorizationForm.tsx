@@ -5,6 +5,8 @@ import * as Yup from "yup";
 
 import { IFormInput } from "./type";
 import { FormInput } from "./FormInput";
+import { Button } from "@material-ui/core";
+import { IBM_Default_Color } from "../../../base/types/ColorBase";
 
 interface IFormState {
     login: IFormInput,
@@ -14,7 +16,22 @@ interface IFormState {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         autorizationForm: {
-            //margin: theme.spacing(5)
+            margin: theme.spacing(5),
+            display: 'flex',
+            flexFlow: 'column wrap',
+        },
+        autorizationForm__button_submit: {
+            backgroundColor: IBM_Default_Color.black,
+            borderRadius: '50px',
+            color: IBM_Default_Color.white,
+            marginTop: theme.spacing(2),
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1),
+            padding: theme.spacing(2),
+            fontSize: '1.3em',
+            '&:hover': {
+                backgroundColor: IBM_Default_Color.black,
+            }
         }
     })
 )
@@ -55,13 +72,14 @@ export const AutorizationForm: React.FC = () => {
                 values,
                 touched,
                 errors,
+                isSubmitting,
                 handleChange,
                 handleBlur,
                 handleSubmit,
             } = props;
             return (
                 <form onSubmit={handleSubmit}
-                      className={classes.autorizationForm}>
+                    className={classes.autorizationForm}>
                     <FormInput label={inputs.login.label}
                         value={values.Login}
                         placeholder={inputs.login.placeholder}
@@ -77,6 +95,14 @@ export const AutorizationForm: React.FC = () => {
                         errorMessage={errors.Password}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
+
+                    <Button type="submit" 
+                            disabled={isSubmitting}
+                            variant="contained"
+                            disableRipple={true}
+                            className={classes.autorizationForm__button_submit}>
+                        Confirm
+                    </Button>
                 </form>)
         }}
     </Formik>)

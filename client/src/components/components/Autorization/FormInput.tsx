@@ -15,7 +15,7 @@ type Props = {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         form__container: {
-            margin: theme.spacing(3)
+            margin: theme.spacing(2)
         },
         form__label: {
             display: 'block',
