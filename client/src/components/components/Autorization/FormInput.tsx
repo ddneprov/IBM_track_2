@@ -57,10 +57,7 @@ export const FormInput: React.FC<Props> = ({
 
     return (<div className={classes.form__container}>
         <label htmlFor={label}
-            className={clsx(classes.form__label, {
-                [classes.error]: isError
-            })
-            }>{label}</label>
+            className={classes.form__label}>{label}</label>
         <input
             id={label}
             placeholder={placeholder}
