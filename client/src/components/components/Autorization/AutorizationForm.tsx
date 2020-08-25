@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Formik } from "formik";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import * as Yup from "yup";
@@ -7,6 +7,7 @@ import { IFormInput } from "./type";
 import { FormInput } from "./FormInput";
 import { Button } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
+import { isError } from "util";
 
 interface IFormState {
     login: IFormInput,
@@ -96,7 +97,11 @@ export const AutorizationForm: React.FC = () => {
                         handleChange={handleChange} />
 
                     <Button type="submit" 
-                            disabled={isSubmitting}
+                            disabled={ errors.Login !== undefined ||
+                                       errors.Password !== undefined ||
+                                       values.Login === '' ||
+                                       values.Password === '' ||
+                                       isSubmitting}
                             variant="contained"
                             className={classes.autorizationForm__button_submit}>
                         Confirm
