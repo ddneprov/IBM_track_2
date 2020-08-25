@@ -1,6 +1,7 @@
 import React from "react"
 import { Formik } from "formik";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
+import CircularProgress from '@material-ui/core/CircularProgress';
 import * as Yup from "yup";
 
 import { IFormInput } from "./type";
@@ -21,12 +22,15 @@ const useStyles = makeStyles((theme: Theme) =>
             flexFlow: 'column wrap',
             justifyContent: 'center'
         },
+        autorizationform__loader: {
+            color: IBM_Default_Color.blue,
+        },
         autorizationForm__button_submit: {
             backgroundColor: IBM_Default_Color.black,
             borderRadius: '50px',
             color: IBM_Default_Color.white,
-            margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
-            padding: theme.spacing(2),
+            margin: `${theme.spacing(2)}px ${theme.spacing(5)}px`,
+            padding: theme.spacing(1),
             fontSize: '1.3em',
             '&:hover': {
                 backgroundColor: IBM_Default_Color.black,
@@ -103,7 +107,7 @@ export const AutorizationForm: React.FC = () => {
                                        isSubmitting}
                             variant="contained"
                             className={classes.autorizationForm__button_submit}>
-                        Confirm
+                        {isSubmitting ? <CircularProgress className={classes.autorizationform__loader}/> : <span>Confirm</span>}
                     </Button>
                 </form>)
         }}
