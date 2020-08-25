@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
-import { ButtonBase, Theme } from "@material-ui/core";
+import { ButtonBase, Theme, Toolbar } from "@material-ui/core";
 import { IBM_Default_Color } from "../base/types/ColorBase";
 
 const ibm_logo = require("../assets/ibm_logo.svg")
@@ -23,11 +23,11 @@ export const Header = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.header}>
+    <Toolbar className={classes.header}>
       <ButtonBase
         className={classes.header__logo}>
         <img src={ibm_logo} alt="logo" />
       </ButtonBase>
-    </div>
+    </Toolbar>
   )
 }

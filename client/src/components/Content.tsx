@@ -7,8 +7,6 @@ const useStyles = makeStyles(
       content: {
         display: 'flex',
         justifyContent: 'center', /*Центрирование по горизонтали*/
-        alignItems: 'center',     /*Центрирование по вертикали */
-        height: '100%'
       }
     })
 );

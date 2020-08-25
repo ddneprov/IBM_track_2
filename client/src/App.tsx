@@ -6,7 +6,8 @@ import { Content } from "./components/Content";
 const useStyles = makeStyles(
   createStyles({
     app: {
-      height: '100%'
+      height: '100%',
+      width: '100%'
     }
   })
 );

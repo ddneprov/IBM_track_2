@@ -9,15 +9,13 @@ import { AutorizationForm } from "./AutorizationForm";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     autorization: {
-      width: '70rem',
-      marginLeft: theme.spacing(3),
-      marginRight: theme.spacing(3),
+      width: '30rem',
+      margin: theme.spacing(3),
 
       display: 'flex',
-      justifyContent: 'center', /*Центрирование по горизонтали*/
+      //justifyContent: 'center', /*Центрирование по горизонтали*/
       alignItems: 'center',     /*Центрирование по вертикали */
-      flexDirection: 'column',
-      flexWrap: 'wrap',
+      flexFlow: 'column wrap',
       boxShadow: '0px 4px 20px 5px rgba(0, 0, 0, 0.25)',
       backgroundColor: IBM_Default_Color.white
     },
@@ -41,7 +39,10 @@ export const Autorization: React.FC = () => {
       <img className={classes.autorization__icon}
         src={profileIcon_Default}
         alt="Профиль" />
-      <Typography variant="h4" noWrap className={classes.autorization__title}>Sign In</Typography>
+      <Typography variant="h4"
+                  align="center"
+                  noWrap
+                  className={classes.autorization__title}>Sign In</Typography>
       <AutorizationForm />
-     </div>)
+    </div>)
 }

@@ -16,17 +16,16 @@ interface IFormState {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         autorizationForm: {
-            margin: theme.spacing(5),
             display: 'flex',
+            width: '20rem',
             flexFlow: 'column wrap',
+            justifyContent: 'center'
         },
         autorizationForm__button_submit: {
             backgroundColor: IBM_Default_Color.black,
             borderRadius: '50px',
             color: IBM_Default_Color.white,
-            marginTop: theme.spacing(2),
-            marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(1),
+            margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
             padding: theme.spacing(2),
             fontSize: '1.3em',
             '&:hover': {
@@ -99,7 +98,6 @@ export const AutorizationForm: React.FC = () => {
                     <Button type="submit" 
                             disabled={isSubmitting}
                             variant="contained"
-                            disableRipple={true}
                             className={classes.autorizationForm__button_submit}>
                         Confirm
                     </Button>

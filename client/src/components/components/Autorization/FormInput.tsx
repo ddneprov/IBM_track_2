@@ -14,7 +14,7 @@ type Props = {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        form__container: {
+        form__input_container: {
             margin: theme.spacing(2)
         },
         form__label: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: theme.spacing(1)
         },
         form__input: {
-            width: '20rem',
+            width: '100%',
             border: `3px solid ${IBM_Default_Color.black}`,
             borderRadius: '25px',
             boxSizing: 'border-box',
@@ -55,7 +55,7 @@ export const FormInput: React.FC<Props> = ({
 
     const classes = useStyles()
 
-    return (<div className={classes.form__container}>
+    return (<div className={classes.form__input_container}>
         <label htmlFor={label}
             className={classes.form__label}>{label}</label>
         <input
