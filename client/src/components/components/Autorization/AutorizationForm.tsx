@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Formik } from "formik";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import * as Yup from "yup";
@@ -7,7 +7,6 @@ import { IFormInput } from "./type";
 import { FormInput } from "./FormInput";
 import { Button } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
-import { isError } from "util";
 
 interface IFormState {
     login: IFormInput,
