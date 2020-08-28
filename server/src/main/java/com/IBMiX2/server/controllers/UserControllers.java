@@ -41,7 +41,7 @@ public class UserControllers {
 
     @RequestMapping(value = "/getUserPatronymicById", method = RequestMethod.GET)
     public String  getUserPatronymicById(@RequestBody Integer id){
-        return userReprisitory.findFirstByUserId(id).getUserSecondName();
+        return userReprisitory.findFirstByUserId(id).getUserPatronymic();
     }
 
     @RequestMapping(value = "/getUserTypeById", method = RequestMethod.GET)

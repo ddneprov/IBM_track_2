@@ -1,4 +1,4 @@
-package com.IBMiX2.stud.entities;
+package com.IBMiX2.server.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
