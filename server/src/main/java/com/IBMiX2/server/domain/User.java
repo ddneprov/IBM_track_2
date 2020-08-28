@@ -16,7 +16,7 @@ public class User {
 
     private String userSurname;
 
-    private String userSecondName;
+    private String userPatronymic;
 
     private String userLogin;
 
@@ -24,20 +24,20 @@ public class User {
 
     private String userType;
 
-    public User(Integer userId, String userName, String userSurname, String userSecondName, String userLogin, String userPassword, String userType){
+    public User(Integer userId, String userName, String userSurname, String userPatronymic, String userLogin, String userPassword, String userType){
         this.userId = userId;
         this.userName = userName;
         this.userSurname = userSurname;
-        this.userSecondName = userSecondName;
+        this.userPatronymic = userPatronymic;
         this.userLogin = userLogin;
         this.userPassword = userPassword;
         this.userType = userType;
     }
 
-    public User(String userName, String userSurname, String userSecondName, String userLogin, String userPassword, String userType){
+    public User(String userName, String userSurname, String userPatronymic, String userLogin, String userPassword, String userType){
         this.userName = userName;
         this.userSurname = userSurname;
-        this.userSecondName = userSecondName;
+        this.userPatronymic = userPatronymic;
         this.userLogin = userLogin;
         this.userPassword = userPassword;
         this.userType = userType;
@@ -65,12 +65,12 @@ public class User {
         this.userSurname = surname;
     }
 
-    public String getUserSecondName() {
-        return userSecondName;
+    public String getUserPatronymic() {
+        return userPatronymic;
     }
 
-    public void setUserSecondName(String secondName) {
-        this.userSecondName = secondName;
+    public void setUserPatronymic(String secondName) {
+        this.userPatronymic = secondName;
     }
 
     public String getUserLogin() {
