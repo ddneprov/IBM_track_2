@@ -10,5 +10,6 @@ public interface UserReprisitory extends CrudRepository<User, String> {
     public List<User> findAll();
     public User findFirstByUserId(Integer userId);
     public User findFirstByUserLoginAndUserPassword(String userLogin, String userPassword);
+    public User findUserByUserLogin(String userLogin);
 
 }
