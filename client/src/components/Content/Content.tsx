@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
-import { Autorization } from "./components/Autorization/Autorization";
-import { Profile } from "./components/Profile/Profile";
+import { Autorization } from "./Autorization/Autorization";
+import { Profile } from "./Profile/Profile";
 
 const useStyles = makeStyles(
     createStyles({
