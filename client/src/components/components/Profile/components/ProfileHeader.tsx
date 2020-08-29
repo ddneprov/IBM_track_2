@@ -1,8 +1,8 @@
 import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 import clsx from 'clsx'
-import { IBM_Default_Color } from "../../../base/types/ColorBase"
-import vkIcon from "../../../assets/vk_icon.png"
+import { IBM_Default_Color } from "../../../../base/types/ColorBase"
+import vkIcon from "../../../../assets/vk_icon.png"
 import { Typography, Button, Theme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
