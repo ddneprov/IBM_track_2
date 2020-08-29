@@ -2,6 +2,7 @@ import React from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { ProfileHeader } from "./components/ProfileHeader";
 import { ProfileContent } from "./components/Content/ProfileContent";
+import pilots from "../../../moc/pilots.json"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,9 +17,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Profile: React.FC = () => {
     const classes = useStyles()
+    const pilot = pilots[0]
+    const delimiterDefault = " ";
+    const fio = [pilot.firstName, pilot.lastName, pilot.patronimic].join(delimiterDefault)
+
 
     return (<div className={classes.profile}>
-        <ProfileHeader />
-        <ProfileContent />
+        <ProfileHeader fio={fio}/>
+        <ProfileContent pilot={pilot}/>
     </div>)
 }

@@ -2,10 +2,9 @@ import React from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 
 import profileIcon from '../../../../../assets/profile__photo.png'
-import pilots from "../../../../../moc/pilots.json"
-import { ProfileField } from "./components/ProfileField"
-import { ProfileFieldLabel } from "../type.d"
+import { ProfileFieldLabel, ProfileFieldType } from "../type.d"
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
+import { ProfileField } from "./components/ProfileField"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,10 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const ProfileInfo: React.FC = () => {
-    const classes = useStyles()
+type Props = {
+    pilot: ProfileFieldType
+}
 
-    const pilot = pilots[0];
+export const ProfileInfo: React.FC<Props> = ({
+    pilot
+}) => {
+    const classes = useStyles()
 
     return (<div className={classes.profileInfo}>
         <img src={profileIcon}

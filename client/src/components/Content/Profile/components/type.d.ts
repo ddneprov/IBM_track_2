@@ -9,13 +9,13 @@ export enum ProfileFieldLabel {
     rewardsAndPunishments = 'Разность между наградами и наказаниями'
 }
 
-type ProfileField = {
+export type ProfileFieldType = {
     firstName: string, // Имя
     lastName: string, // Фамилия
     patronimic: string, // Отчество
-    crewRole: stirng, // должность
-    standingFromDate: Date, // Дата начала работы в компании
-    standingFromDateInRole: Date, // Дата заступления на текущую должность
+    crewRole: string, // должность
+    standingFromDate: string, // Дата начала работы в компании
+    standingFromDateInRole: string, // Дата заступления на текущую должность
     reliabilityIndex: int, // Индекс надежности
     rewardsAndPunishments: int // Разность между наградами и наказаниями
 }

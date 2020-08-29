@@ -1,9 +1,9 @@
 import React from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { ProfileTabFrame } from "../hoc/ProfileTabFrame";
-import { Divider } from '@material-ui/core'
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase";
 import { ProfileInfo } from "./ProfileInfo";
+import { ProfileFieldType } from "../type";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,7 +17,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const ProfileContent: React.FC = () => {
+type Props = {
+  pilot: ProfileFieldType
+}
+
+export const ProfileContent: React.FC<Props> = ({
+  pilot
+}) => {
   const classes = useStyles()
 
   const titleTabs = {
@@ -27,7 +33,7 @@ export const ProfileContent: React.FC = () => {
 
   return (<div className={classes.profile__content}>
     <ProfileTabFrame title={titleTabs.profileInfo}
-                     Component={<ProfileInfo />}/>
+                     Component={<ProfileInfo pilot={pilot}/>}/>
     {/* <Divider orientation='vertical'
       variant='middle' />
         <ProfileTabFrame title={titleTabs.seniority}

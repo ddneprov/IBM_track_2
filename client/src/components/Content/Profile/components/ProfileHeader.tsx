@@ -27,7 +27,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const ProfileHeader: React.FC = () => {
+type Props = {
+  fio: string
+}
+
+export const ProfileHeader: React.FC<Props> = ({
+  fio
+}) => {
   const classes = useStyles()
 
   return (<div className={classes.profile__header}>
@@ -36,7 +42,7 @@ export const ProfileHeader: React.FC = () => {
          className={classes.icon} />
     <Typography variant='h5'
                 className={clsx(classes.fio, 'alignLeft')}
-                >Иванов Иван Иванович</Typography>
+                >{fio}</Typography>
     <Button type="submit"
             variant="contained"
             color="secondary"
