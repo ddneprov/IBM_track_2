@@ -13,12 +13,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Props = {
     label: string,
-    value: string
+    value: string,
+    disabled: boolean
 }
 
 export const ProfileField : React.FC<Props> = ({
     label,
-    value
+    value,
+    disabled
 }) => {
     
     const classes = useStyles();
@@ -32,6 +34,7 @@ export const ProfileField : React.FC<Props> = ({
         <label>{label}</label>
         <input type='text' 
                value={fieldValue}
-               onChange={onChangeFieldValue}></input>
+               onChange={onChangeFieldValue}
+               disabled={disabled}></input>
     </div>
 }

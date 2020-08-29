@@ -39,14 +39,14 @@ export const ProfileInfo: React.FC = () => {
             alt='Профиль'
             className={classes.profileInfo__icon} />
         <div className={classes.profileInfo__fields}>
-            <ProfileField label={ProfileFieldLabel.firstName} value={pilot.firstName} />
-            <ProfileField label={ProfileFieldLabel.lastName} value={pilot.lastName} />
-            <ProfileField label={ProfileFieldLabel.patronimic} value={pilot.patronimic} />
-            <ProfileField label={ProfileFieldLabel.crewRole} value={pilot.crewRole} />
-            <ProfileField label={ProfileFieldLabel.standingFromDate} value={pilot.standingFromDate} />
-            <ProfileField label={ProfileFieldLabel.standingFromDateInRole} value={pilot.standingFromDateInRole} />
-            <ProfileField label={ProfileFieldLabel.reliabilityIndex} value={pilot.reliabilityIndex} />
-            <ProfileField label={ProfileFieldLabel.rewardsAndPunishments} value={pilot.rewardsAndPunishments} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.firstName} value={pilot.firstName} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.lastName} value={pilot.lastName} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.patronimic} value={pilot.patronimic} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.crewRole} value={pilot.crewRole} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.standingFromDate} value={pilot.standingFromDate} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.standingFromDateInRole} value={pilot.standingFromDateInRole} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.reliabilityIndex} value={pilot.reliabilityIndex} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.rewardsAndPunishments} value={pilot.rewardsAndPunishments} />
         </div>
     </div>)
 }
