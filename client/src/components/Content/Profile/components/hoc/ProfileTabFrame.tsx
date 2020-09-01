@@ -7,14 +7,14 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         tab__item: {
             display: 'flex',
-            //backgroundColor: IBM_Default_Color.blue,
             alignItems: 'center',
             flexDirection: "column",
             flexShrink: 1,
             width: '44rem'
         },
         tab__item_title: {
-            padding: theme.spacing(2),
+            borderRadius: '0px 0px 30px 30px',
+            padding: '1rem 3rem',
             backgroundColor: IBM_Default_Color.black,
             color: IBM_Default_Color.white
         }
