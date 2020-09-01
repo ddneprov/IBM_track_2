@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
         field: {
             display: 'grid',
             gridTemplateColumns: '1fr 2fr',
+            gridGap: '1rem',
             margin: theme.spacing(0.5)
         },
     })
