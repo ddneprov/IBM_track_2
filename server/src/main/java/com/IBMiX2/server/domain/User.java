@@ -1,11 +1,12 @@
 package com.IBMiX2.server.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
+@Data
 public class User {
 
     @Id
