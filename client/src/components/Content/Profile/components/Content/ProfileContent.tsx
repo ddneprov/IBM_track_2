@@ -4,6 +4,7 @@ import { ProfileTabFrame } from "../hoc/ProfileTabFrame";
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileFieldType } from "../type";
+import { ProfileSeniority } from "./ProfileSeniority";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +34,9 @@ export const ProfileContent: React.FC<Props> = ({
 
   return (<div className={classes.profile__content}>
     <ProfileTabFrame title={titleTabs.profileInfo}
-                     Component={<ProfileInfo pilot={pilot}/>}/>
+      Component={<ProfileInfo pilot={pilot} />} />
+    <ProfileTabFrame title={titleTabs.seniority}
+      Component={<ProfileSeniority pilot={pilot} />} />
     {/* <Divider orientation='vertical'
       variant='middle' />
         <ProfileTabFrame title={titleTabs.seniority}
