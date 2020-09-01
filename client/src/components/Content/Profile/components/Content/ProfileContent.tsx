@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       flexWrap: 'wrap',
       marginTop: theme.spacing(2),
+      paddingBottom: theme.spacing(4),
       backgroundColor: IBM_Default_Color.white
     }
   })
