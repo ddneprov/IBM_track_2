@@ -4,7 +4,7 @@ import { ProfileTabFrame } from "../hoc/ProfileTabFrame";
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileFieldType } from "../type";
-import { ProfileSeniority } from "./ProfileSeniority";
+import { ProfileSeniority } from "../hoc/ProfileSeniority";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
