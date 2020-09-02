@@ -44,16 +44,16 @@ export const ProfileSeniority: React.FC<Props> = ({
     //const seniorityResult = 
 
     return (<>
+        <Typography variant="h4"
+            align="center"
+            className={classes.seniority__result_value} />
+        <StarsIcon className={classes.seniority__result_icon} />
         {isManager ?
             <>
-                <Typography variant="h4"
-                    align="center"
-                    className={classes.seniority__result_value} />
-                <StarsIcon className={classes.seniority__result_icon} />
+                <Chart pilot={pilot}
+                    characteristic={characteristic}
+                    classes={clsx({ [classes.seniority__chart]: !isManager })} />
             </>
             : <></>}
-        <Chart pilot={pilot}
-            characteristic={characteristic}
-            classes={clsx({ [classes.seniority__chart]: !isManager })} />
     </>)
 }
