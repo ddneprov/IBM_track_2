@@ -7,27 +7,7 @@ import { yellow } from "@material-ui/core/colors"
 import clsx from 'clsx'
 import { Typography } from "@material-ui/core"
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
-
-/**
- * Характеристики
- */
-const characteristic = [
-    {
-        name: 'Experience', star: 5,
-    },
-    {
-        name: 'Length', star: 4
-    },
-    {
-        name: 'Clearance level', star: 2
-    },
-    {
-        name: 'Quality', star: 1
-    },
-    {
-        name: 'R/P', star: 5
-    }
-];
+import { getCharacteristic } from "../../../../../utils/Profile/characteristic"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -59,13 +39,16 @@ export const ProfileSeniority: React.FC<Props> = ({
 
     const classes = useStyles()
     const isManager = pilot.crewRole === CrewRoleEnum.manager
+    const characteristic = getCharacteristic(pilot)
+
+    //const seniorityResult = 
 
     return (<>
         {isManager ?
             <>
                 <Typography variant="h4"
-                            align="center" 
-                            className={classes.seniority__result_value}/>
+                    align="center"
+                    className={classes.seniority__result_value} />
                 <StarsIcon className={classes.seniority__result_icon} />
             </>
             : <></>}

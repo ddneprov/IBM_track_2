@@ -4,9 +4,9 @@
         "lastName": "Иван",
         "patronimic": "Иванович",
         "crewRole": "КВС-инстр", 
-        "standingFromDate": "2011-06-13",
+        "standingFromDate": "2018-05-11",
         "standingFromDateInRole": "2020-05-11",
-        "reliabilityIndex": "6",
-        "rewardsAndPunishments": "0" 
+        "reliabilityIndex": "3",
+        "rewardsAndPunishments": "5" 
     }
 ]

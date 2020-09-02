@@ -13,13 +13,18 @@ export enum ProfileFieldLabel {
  * Перечисление ролей
  */
 export enum CrewRoleEnum {
-    manager = 'КВС-инстр'
+    twoP = '2П',
+    twoPintern = '2П-стажер',
+    manager = 'КВС-инстр',
+    kvs = 'КВС',
+    kvsExam = 'КВС-экзаменатор',
+    kvsIntern = 'КВС-стажер'
 }
 
 /**
  * Роли
  */
-export type CrewRoleType = 'КВС' | 'КВС-экзаменатор' | '2П' | '2П-стажер' | 'КВС-стажер' | CrewRoleEnum.manager
+export type CrewRoleType = CrewRoleEnum.twoP | CrewRoleEnum.twoPintern | CrewRoleEnum.kvs | CrewRoleEnum.kvsExam | CrewRoleEnum.intern | CrewRoleEnum.manager
 
 export type ProfileFieldType = {
     firstName: string, // Имя
@@ -30,8 +35,4 @@ export type ProfileFieldType = {
     standingFromDateInRole: string, // Дата заступления на текущую должность
     reliabilityIndex: int, // Индекс надежности
     rewardsAndPunishments: int // Разность между наградами и наказаниями
-}
-
-export interface IProfileField {
-    [key: keyof ProfileField]: string
 }
