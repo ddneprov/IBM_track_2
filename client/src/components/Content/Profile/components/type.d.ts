@@ -9,11 +9,23 @@ export enum ProfileFieldLabel {
     rewardsAndPunishments = 'Разность между наградами и наказаниями'
 }
 
+/**
+ * Перечисление ролей
+ */
+export enum CrewRoleEnum {
+    manager = 'КВС-инстр'
+}
+
+/**
+ * Роли
+ */
+export type CrewRoleType = 'КВС' | 'КВС-экзаменатор' | '2П' | '2П-стажер' | 'КВС-стажер' | CrewRoleEnum.manager
+
 export type ProfileFieldType = {
     firstName: string, // Имя
     lastName: string, // Фамилия
     patronimic: string, // Отчество
-    crewRole: string, // должность
+    crewRole: CrewRoleType | string, // должность
     standingFromDate: string, // Дата начала работы в компании
     standingFromDateInRole: string, // Дата заступления на текущую должность
     reliabilityIndex: int, // Индекс надежности

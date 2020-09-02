@@ -1,5 +1,4 @@
 import React from "react"
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { scaleOrdinal } from 'd3-scale'
 import { schemeCategory10 } from 'd3-scale-chromatic'
 
@@ -8,18 +7,6 @@ import {
 } from 'recharts';
 import { IBM_Default_Color } from "../base/types/ColorBase";
 import { ProfileFieldType } from "../components/Content/Profile/components/type";
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        chart: {
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginTop: theme.spacing(9),
-            backgroundColor: IBM_Default_Color.white
-        }
-    })
-);
 
 const colors = scaleOrdinal(schemeCategory10).range();
 
@@ -34,33 +21,33 @@ const chartStyle = {
 
 type Props = {
     pilot: ProfileFieldType,
-    characteristic: readonly object[] | undefined
+    characteristic: readonly object[] | undefined,
+    classes: string
 }
 
 
 export const Chart: React.FC<Props> = ({
     pilot,
-    characteristic
+    characteristic,
+    classes
 }) => {
-    const classes = useStyles()
 
-    return (<div className={classes.chart}>
-        <BarChart
-            {...chartStyle}
-            data={characteristic}
-        >
-            <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
-            <YAxis/>
-            <Tooltip />
-            <Legend />
-            <CartesianGrid strokeDasharray="3 3" />
-            <Bar dataKey="star" fill={IBM_Default_Color.black} background={{ fill: IBM_Default_Color.gray }} >
-                {
-                    characteristic?.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-                    ))
-                }
-            </Bar>
-        </BarChart>
-    </div>)
+    return (<BarChart
+        {...chartStyle}
+        data={characteristic}
+        className={classes}
+    >
+        <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Bar dataKey="star" fill={IBM_Default_Color.black} background={{ fill: IBM_Default_Color.gray }} >
+            {
+                characteristic?.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                ))
+            }
+        </Bar>
+    </BarChart>)
 }
