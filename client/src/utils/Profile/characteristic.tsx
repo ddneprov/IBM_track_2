@@ -1,4 +1,5 @@
 import { ProfileFieldType } from "../../components/Content/Profile/components/type"
+import { CharapterSeniority } from "./type"
 
 /**
  * Максимальное значение характеристики
@@ -51,5 +52,19 @@ export const getCharacteristic = (pilot: ProfileFieldType) => {
         {
             name: 'R/P', star: convertCharacteristic(pilot.rewardsAndPunishments)
         }
-    ]
+    ] as Array<CharapterSeniority>
+}
+
+/**
+ * Возвращает итоговое значение сеньёрити.
+ * @param charapters массив характеристик пилота.
+ */
+export const getSeniorityResult = (charapters: Array<CharapterSeniority>) => {
+    let result = 0
+
+    charapters.forEach(charapter => {
+        result += charapter.star
+    })
+
+    return convertCharacteristic(result / charapters.length).toFixed(1)
 }
