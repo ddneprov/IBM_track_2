@@ -2,7 +2,7 @@
     {
         "firstName": "Иванов",
         "lastName": "Иван",
-        "patronimic": "Иванович",
+        "patronymic": "Иванович",
         "crewRole": "КВС-инстр", 
         "standingFromDate": "2018-05-11",
         "standingFromDateInRole": "2020-05-11",

@@ -4,6 +4,7 @@ import { Theme, IconButton, Button } from "@material-ui/core"
 import { IBM_Default_Color } from "../base/types/ColorBase"
 import { NavigationItemInfo } from "../common/components/type"
 import { DropRightMenu } from "../common/components/DropRightMenu"
+import { RouterMap } from "../base/types/RouterMap"
 
 const profileIcon_Default = require("../assets/profileIcon_Default.png")
 const ibm_logo = require("../assets/ibm_logo.svg")
@@ -34,8 +35,8 @@ export const Header = () => {
 
   const [isOpen, setState] = useState(false);
   const pages: Array<NavigationItemInfo> = [
-    { text: "Мой профиль", pathURL: "Profile" },
-    { text: "Выйти", pathURL: "Auth" }
+    { text: "Мой профиль", pathURL: RouterMap.Profile },
+    { text: "Выйти", pathURL: RouterMap.Auth }
   ]
 
   const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {

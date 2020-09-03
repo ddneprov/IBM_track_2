@@ -29,7 +29,7 @@ export type CrewRoleType = CrewRoleEnum.twoP | CrewRoleEnum.twoPintern | CrewRol
 export type ProfileFieldType = {
     firstName: string, // Имя
     lastName: string, // Фамилия
-    patronimic: string, // Отчество
+    patronymic: string, // Отчество
     crewRole: CrewRoleType | string, // должность
     standingFromDate: string, // Дата начала работы в компании
     standingFromDateInRole: string, // Дата заступления на текущую должность

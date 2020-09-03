@@ -19,7 +19,7 @@ export const Profile: React.FC = () => {
     const classes = useStyles()
     const pilot = pilots[0]
     const delimiterDefault = " ";
-    const fio = [pilot.firstName, pilot.lastName, pilot.patronimic].join(delimiterDefault)
+    const fio = [pilot.firstName, pilot.lastName, pilot.patronymic].join(delimiterDefault)
 
 
     return (<div className={classes.profile}>

@@ -5,6 +5,7 @@ import { IBM_Default_Color } from "../../../../base/types/ColorBase"
 import profileStatusIcon from "../../../../assets/profile__icon_status.png"
 import { Typography, Button, Theme } from "@material-ui/core"
 import { NavLink } from 'react-router-dom'
+import { RouterMap } from "../../../../base/types/RouterMap"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,7 +51,7 @@ export const ProfileHeader: React.FC<Props> = ({
             variant="contained"
             color="secondary"
             component={NavLink}
-            to='Auth'
+            to={RouterMap.Auth}
             className={classes.logOut_button}>
       Log out
     </Button>
