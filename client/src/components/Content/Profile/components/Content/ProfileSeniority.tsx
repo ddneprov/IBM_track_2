@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: '2rem'
         },
         seniority__chart: {
-            margin: theme.spacing(9),
+            marginTop: theme.spacing(9),
         }
     })
 );
