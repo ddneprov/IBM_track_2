@@ -40,18 +40,30 @@ public class AuthenticationRestControllerV1 {
     @PostMapping("login")
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
         try {
-            String username = requestDto.getUserLogin();
-            //TODO: authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getUserPassword()));
-            User user = userService.findUserByUserLogin(username);
+            String userLogin = requestDto.getUserLogin();
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin, requestDto.getUserPassword()));
+            User user = userService.findUserByUserLogin(userLogin);
 
             if (user == null) {
-                throw new UsernameNotFoundException("User with username: " + username + " not found");
+                throw new UsernameNotFoundException("User with username: " + userLogin + " not found");
             }
 
-            String token = jwtTokenProvider.createToken(username, "USER");  //  поменять
+            String token = jwtTokenProvider.createToken(userLogin, user.getUserRole());
 
             Map<Object, Object> response = new HashMap<>();
-            response.put("username", username);
+            //TODO: переименовать поля на стороне бека
+            response.put("firstName", user.getUserName());
+            response.put("secondName", user.getUserSurname());
+            response.put("patronymic", user.getUserPatronymic());
+            response.put("crewRole", "КВС-инстр");
+            response.put("standingFromDate", "2018-05-11");
+            response.put("standingFromDateInRole", "2020-05-11");
+            response.put("reliabilityIndex", "3");
+            response.put("rewardsAndPunishments", "5");
+
+
+            //response.put("userLogin", userLogin);
+            response.put("role", user.getUserRole());
             response.put("token", token);
 
             return ResponseEntity.ok(response);

@@ -13,7 +13,7 @@ public class UserDto {
     private String userSurname;
     private String userPatronymic;
     private String userLogin;
-    private String userType;
+    private String userRole;
 
     public User toUser(){
         User user = new User();
@@ -22,7 +22,7 @@ public class UserDto {
         user.setUserSurname(userSurname);
         user.setUserPatronymic(userPatronymic);
         user.setUserLogin(userLogin);
-        user.setUserType(userType);
+        user.setUserRole(userRole);
         return user;
     }
 
@@ -33,7 +33,7 @@ public class UserDto {
         userDto.setUserSurname(user.getUserSurname());
         userDto.setUserPatronymic(user.getUserPatronymic());
         userDto.setUserLogin(user.getUserLogin());
-        userDto.setUserType(user.getUserType());
+        userDto.setUserRole(user.getUserRole());
         return userDto;
     }
 }

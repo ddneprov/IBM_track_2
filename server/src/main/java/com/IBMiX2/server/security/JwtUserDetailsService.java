@@ -4,7 +4,6 @@ import com.IBMiX2.server.domain.User;
 import com.IBMiX2.server.security.jwt.JwtUser;
 import com.IBMiX2.server.security.jwt.JwtUserFactory;
 import com.IBMiX2.server.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

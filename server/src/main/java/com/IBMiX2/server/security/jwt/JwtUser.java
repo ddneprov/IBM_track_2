@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Date;
 
 public class JwtUser implements UserDetails {
 
@@ -15,67 +14,62 @@ public class JwtUser implements UserDetails {
     private final String userPatronymic;
     private final String userLogin;
     private final String userPassword;
-    private final String userType;
+    private final String userRole;
     private final boolean isEnable;
-    //private final Date lastPasswordResetDate;
+    private final Collection<? extends GrantedAuthority> authorities;
+
 
     public JwtUser(Integer userId, String userName, String userSurname, String userPatronymic, String userLogin,
-                   String userPassword, String userType, boolean isEnable) {
+                   String userPassword, String userRole, boolean isEnable, Collection<? extends GrantedAuthority> authorities) {
         this.userId = userId;
         this.userName = userName;
         this.userSurname = userSurname;
         this.userPatronymic = userPatronymic;
         this.userLogin = userLogin;
         this.userPassword = userPassword;
-        this.userType = userType;
+        this.userRole = userRole;
         this.isEnable = isEnable;
-        //this.lastPasswordResetDate = lastPasswordResetDate;
+        this.authorities = authorities;
     }
 
+
+    @JsonIgnore
+    public Integer getUserId() { return userId; }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+    public Collection<? extends GrantedAuthority> getAuthorities() { return authorities; }
 
+    @JsonIgnore
     @Override
     public String getPassword() {
-        return null;
+        return userPassword;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return userName;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
 
     @Override
     public boolean isEnabled() {
-        return false;
-    }
-
-
-    /**
- * TODO: поправить аннотации
-* */
-    public Integer getUserId() { return userId; }
-
-    public String getUserName() {
-        return userName;
+        return isEnable;
     }
 
     public String getUserSurname() {
@@ -90,16 +84,7 @@ public class JwtUser implements UserDetails {
         return userLogin;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getUserRole() {
+        return userRole;
     }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public boolean isEnable() {
-        return isEnable;
-    }
-
 }
