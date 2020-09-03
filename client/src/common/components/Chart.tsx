@@ -5,8 +5,8 @@ import { schemeCategory10 } from 'd3-scale-chromatic'
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell,
 } from 'recharts';
-import { IBM_Default_Color } from "../base/types/ColorBase";
-import { ProfileFieldType } from "../components/Content/Profile/components/type";
+import { IBM_Default_Color } from "../../base/types/ColorBase";
+import { ProfileFieldType } from "../../components/Content/Profile/components/type";
 
 const colors = scaleOrdinal(schemeCategory10).range();
 

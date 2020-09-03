@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { ProfileFieldType, CrewRoleEnum } from "../type.d"
-import { Chart } from "../../../../../common/Chart"
+import { Chart } from "../../../../../common/components/Chart"
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
 import { getCharacteristic, getSeniorityResult } from "../../../../../utils/Profile/characteristic"
 import starIcon from "../../../../../assets/Star.png"
