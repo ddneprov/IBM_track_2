@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { ProfileHeader } from "./components/ProfileHeader";
 import { ProfileContent } from "./components/Content/ProfileContent";
 import pilots from "../../../moc/pilots.json"
+import { ProfileFieldType } from "./components/type";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -15,15 +16,25 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const Profile: React.FC = () => {
+type Props = {
+  user?: ProfileFieldType | undefined
+}
+
+export const Profile: React.FC<Props> = ({
+  user
+}) => {
     const classes = useStyles()
-    const pilot = pilots[0]
     const delimiterDefault = " ";
-    const fio = [pilot.firstName, pilot.lastName, pilot.patronymic].join(delimiterDefault)
+
+    if (!user) {
+      user = pilots[0]
+    } 
+
+    const fio = [user.firstName, user.lastName, user.patronymic].join(delimiterDefault)
 
 
     return (<div className={classes.profile}>
         <ProfileHeader fio={fio}/>
-        <ProfileContent pilot={pilot}/>
+        <ProfileContent pilot={user}/>
     </div>)
 }
