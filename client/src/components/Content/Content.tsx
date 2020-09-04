@@ -22,6 +22,7 @@ export const Content: React.FC = () => {
     <Switch>
       <Route exact path={`/${RouterMap.PilotsList}`} render={() => <PilotsList />} />
       <Route exact path={`/${RouterMap.Profile}`} render={() => <Profile />} />
+      <Route exact path={`/${RouterMap.Profile}/:id`} render={() => <Profile />} />
       <Route exact path={`/${RouterMap.Auth}`} render={() => <Autorization />} />
       <Route path='*'
           render={() => <div>404 NOT FOUND</div>} />
