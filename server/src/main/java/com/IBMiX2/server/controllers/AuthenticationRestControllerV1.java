@@ -60,9 +60,6 @@ public class AuthenticationRestControllerV1 {
             response.put("standingFromDateInRole", "2020-05-11");
             response.put("reliabilityIndex", "3");
             response.put("rewardsAndPunishments", "5");
-
-
-            //response.put("userLogin", userLogin);
             response.put("role", user.getUserRole());
             response.put("token", token);
 

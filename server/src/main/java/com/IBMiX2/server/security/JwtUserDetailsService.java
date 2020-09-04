@@ -33,6 +33,7 @@ public class JwtUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User with userLogin: " + userLogin + " not found");
 
         JwtUser jwtUser = JwtUserFactory.create(user);
+        System.out.println("JWT USER PASSWORD ->" + jwtUser.getPassword());
         log.info("loadUserByUsername -> user with userLogin = {} successfully loaded", userLogin);
         return jwtUser;
     }
