@@ -1,14 +1,15 @@
 import React from 'react'
 import {withRouter, RouteComponentProps} from "react-router-dom"
 import {compose} from "redux"
+import cookie from 'react-cookies'
 
 import pilots from "../../../moc/pilots_preprod.json"
 import { Profile } from './Profile';
 import { isManager } from '../../../utils/Profile/userHelpers';
 
-const mapStateToProps = (state: any, ownProps: any) => {
+const mapStateToProps = (state: any) => {
     return {
-        cookies: ownProps.cookies,
+        
     }
 };
 
@@ -28,8 +29,8 @@ class ProfileClassComponent extends React.Component<Props> {
     render() {
         
         const user = pilots.find( (pilot, index) => index.toString() === this.props.match.params.userId);
-
-        this.props.cookies.set('isManager', isManager(user?.crewRole), { path: '/' })
+        debugger
+        cookie.save('isManager', isManager(user?.crewRole).toString(), { path: '/' })
 
         if (user)
         {
