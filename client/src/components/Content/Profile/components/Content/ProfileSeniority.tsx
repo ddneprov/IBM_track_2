@@ -52,7 +52,7 @@ export const ProfileSeniority: React.FC<Props> = ({
         <div className={classes.seniority__result} >
             <div className={classes.seniority__result_value} >{seniorityResult}</div>
         </div>
-        {getCookieByPropertyName('isManager') ?
+        {getCookieByPropertyName('isManager') === 'true' ?
             <Chart pilot={user}
                 characteristic={characteristic}
                 classes={classes.seniority__chart} />

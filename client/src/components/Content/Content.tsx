@@ -21,6 +21,7 @@ export const Content: React.FC = () => {
   return (<div className={classes.content}>
     <Switch>
       <Route exact path={`/${RouterMap.PilotsList}`} render={() => <PilotsList />} />
+      <Route exact path={`/${RouterMap.Profile}`} render={() => <ProfileContainer />} />
       <Route exact path={`/${RouterMap.Profile}/:userId`} render={() => <ProfileContainer />} />
       <Route exact path={`/${RouterMap.Auth}`} render={() => <Autorization />} />
       <Route path='*'

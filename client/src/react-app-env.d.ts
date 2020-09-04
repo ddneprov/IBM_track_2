@@ -6,14 +6,14 @@
 class Config {
     private DebugEnable: false
 
-    public Config(DebugEnable) {
+    public constructor(DebugEnable: boolean) {
         this.DebugEnable = DebugEnable
     }
 
     /**
      * true, елси использовать настройки для отладки
      */
-    public getDebugEnable = () => DebugEnable
+    public getDebugEnable = () => this.DebugEnable
 }
 
 export const config = new Config(true)
