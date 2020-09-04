@@ -35,6 +35,6 @@ export const Profile: React.FC<Props> = ({
 
     return (<div className={classes.profile}>
         <ProfileHeader fio={fio}/>
-        <ProfileContent pilot={user}/>
+        <ProfileContent user={user}/>
     </div>)
 }

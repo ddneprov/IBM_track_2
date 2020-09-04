@@ -4,9 +4,11 @@ import {compose} from "redux"
 
 import pilots from "../../../moc/pilots_preprod.json"
 import { Profile } from './Profile';
+import { isManager } from '../../../utils/Profile/userHelpers';
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any, ownProps: any) => {
     return {
+        cookies: ownProps.cookies,
     }
 };
 
@@ -24,7 +26,10 @@ type Props = ReturnType<typeof mapStateToProps> &
 
 class ProfileClassComponent extends React.Component<Props> {
     render() {
+        
         const user = pilots.find( (pilot, index) => index.toString() === this.props.match.params.userId);
+
+        this.props.cookies.set('isManager', isManager(user?.crewRole), { path: '/' })
 
         if (user)
         {
