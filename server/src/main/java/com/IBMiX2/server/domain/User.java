@@ -1,11 +1,12 @@
 package com.IBMiX2.server.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
+@Data
 public class User {
 
     @Id
@@ -22,25 +23,25 @@ public class User {
 
     private String userPassword;
 
-    private String userType;
+    private String userRole;
 
-    public User(Integer userId, String userName, String userSurname, String userPatronymic, String userLogin, String userPassword, String userType){
+    public User(Integer userId, String userName, String userSurname, String userPatronymic, String userLogin, String userPassword, String userRole){
         this.userId = userId;
         this.userName = userName;
         this.userSurname = userSurname;
         this.userPatronymic = userPatronymic;
         this.userLogin = userLogin;
         this.userPassword = userPassword;
-        this.userType = userType;
+        this.userRole = userRole;
     }
 
-    public User(String userName, String userSurname, String userPatronymic, String userLogin, String userPassword, String userType){
+    public User(String userName, String userSurname, String userPatronymic, String userLogin, String userPassword, String userRole){
         this.userName = userName;
         this.userSurname = userSurname;
         this.userPatronymic = userPatronymic;
         this.userLogin = userLogin;
         this.userPassword = userPassword;
-        this.userType = userType;
+        this.userRole = userRole;
     }
 
     public User() {}
@@ -89,11 +90,11 @@ public class User {
         this.userPassword = password;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }

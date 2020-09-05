@@ -2,7 +2,7 @@ package com.IBMiX2.server.controllers;
 
 
 import com.IBMiX2.server.domain.User;
-import com.IBMiX2.server.service.UserService;
+import com.IBMiX2.server.service.impl.UserServiceImpl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
@@ -19,25 +19,25 @@ import java.util.ArrayList;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserControllers {
 
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @RequestMapping(value = "/setNewUser", method = RequestMethod.POST)
     public String  setNewUser(@RequestBody User user) throws JsonProcessingException {
-        return userService.setNewUser(user);
+        return userServiceImpl.setNewUser(user);
     }
 
     @RequestMapping(value= "/isUserExist", method = RequestMethod.GET)
     public String isUserExistCheck(@RequestBody ArrayList<String> userLogInfo){
-        return userService.isUserExistCheck(userLogInfo);
+        return userServiceImpl.isUserExistCheck(userLogInfo);
     }
 
     @RequestMapping(value = "/setUserLoginById", method = RequestMethod.POST)
     public String setUserLoginById(@RequestBody ArrayList<String> userLogInfo){
-        return userService.registerUser(userLogInfo);
+        return userServiceImpl.resetUserLogin(userLogInfo);
     }
 
     @RequestMapping(value = "/setUserPasswordById", method = RequestMethod.POST)
     public String setUserPasswordById(@RequestBody ArrayList<String> userLogInfo){
-        return userService.resetUserPassword(userLogInfo);
+        return userServiceImpl.resetUserPassword(userLogInfo);
     }
 }
