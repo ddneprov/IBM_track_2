@@ -44,7 +44,7 @@ export const ProfileInfo: React.FC<Props> = ({
         <div className={classes.profileInfo__fields}>
             <ProfileField disabled={true} label={ProfileFieldLabel.firstName} value={user.firstName} />
             <ProfileField disabled={true} label={ProfileFieldLabel.lastName} value={user.lastName} />
-            <ProfileField disabled={true} label={ProfileFieldLabel.patronimic} value={user.patronymic} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.patronymic} value={user.patronymic} />
             <ProfileField disabled={true} label={ProfileFieldLabel.crewRole} value={user.crewRole} />
         </div>
     </div>)
