@@ -5,6 +5,8 @@ import { IBM_Default_Color } from "../base/types/ColorBase"
 import { NavigationItemInfo } from "../common/components/type"
 import { DropRightMenu } from "../common/components/DropRightMenu"
 import { RouterMap } from "../base/types/RouterMap"
+import { useSelector } from "react-redux"
+import { isAuthorization } from "../redux/Profile/profile-selectors"
 
 const profileIcon_Default = require("../assets/profileIcon_Default.png")
 const ibm_logo = require("../assets/ibm_logo.svg")
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Header = () => {
   const classes = useStyles()
 
+  const isAuth = useSelector(isAuthorization)
   const [isOpen, setState] = useState(false);
   const pages: Array<NavigationItemInfo> = [
     { text: "Мой профиль", pathURL: RouterMap.Profile },
@@ -62,23 +65,28 @@ export const Header = () => {
         </Button>
       </div>
 
-      {/* Кнопка выпадающего меню */}
-      <IconButton
-        color="inherit"
-        aria-label="open drawer"
-        edge="end"
-        className={classes.header__profileIcon_button}
-        onClick={toggleDrawer(true)}
-      >
-        <img src={profileIcon_Default} alt="logo" className={classes.header__profileIcon} />
-      </IconButton>
+      {
+        isAuth ?
+          <>
+            {/* Кнопка выпадающего меню */}
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              className={classes.header__profileIcon_button}
+              onClick={toggleDrawer(true)}
+            >
+              <img src={profileIcon_Default} alt="logo" className={classes.header__profileIcon} />
+            </IconButton>
 
-      {/* Выпадающее меню */}
-      <React.Fragment>
-        <DropRightMenu pages={pages}
-          isOpen={isOpen}
-          toggleDropRightMenu={toggleDrawer} />
-      </React.Fragment>
+            {/* Выпадающее меню */}
+            <React.Fragment>
+              <DropRightMenu pages={pages}
+                isOpen={isOpen}
+                toggleDropRightMenu={toggleDrawer} />
+            </React.Fragment>
+          </> : <></>
+      }
     </div>
   )
 }
