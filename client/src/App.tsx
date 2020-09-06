@@ -4,6 +4,8 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { BrowserRouter } from "react-router-dom";
 import { Header } from './components/Header';
 import { Content } from "./components/Content/Content";
+import { Provider } from "react-redux";
+import { store } from "./redux/redux-store";
 
 const useStyles = makeStyles(
   createStyles({
@@ -20,10 +22,12 @@ const App: React.FC = () => {
   return (
     <CookiesProvider>
       <BrowserRouter>
-        <div className={classes.app}>
-          <Header />
-          <Content />
-        </div>
+        <Provider store={store}>
+          <div className={classes.app}>
+            <Header />
+            <Content />
+          </div>
+        </Provider>
       </BrowserRouter>
     </CookiesProvider>
   );

@@ -1,6 +1,6 @@
 import { actions } from './profile-actions';
 import { ProfileFieldType } from './../../components/Content/Profile/components/type.d';
-import { config } from '../../react-app-env';
+import { config } from '../../react-app-env.d';
 import { InferActionsTypes } from '../redux-store';
 import pilots from "../../moc/pilots.json"
 
@@ -19,7 +19,6 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
     switch (action.type) {
         default:
             return initialState
-            break;
     }
 }
 
