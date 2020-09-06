@@ -3,5 +3,6 @@
  */
 export enum RouterMap {
     Auth = 'Auth', // Страница авторизации
-    Profile = 'Profile' // Страница профиля
+    Profile = 'Profile', // Страница профиля
+    PilotsList = 'PilotsList' // Страница со списком пилотов
 }

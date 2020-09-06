@@ -1,10 +1,11 @@
 import React from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
-import { ProfileFieldType, CrewRoleEnum } from "../type.d"
+import { ProfileFieldType } from "../type.d"
 import { Chart } from "../../../../../common/components/Chart"
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
 import { getCharacteristic, getSeniorityResult } from "../../../../../utils/Profile/characteristic"
 import starIcon from "../../../../../assets/Star.png"
+import { getCookieByPropertyName } from "../../../../../utils/cookieHelpers"
 
 const iconSize = '12rem'
 
@@ -35,16 +36,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-    pilot: ProfileFieldType
+    user: ProfileFieldType
 }
 
 export const ProfileSeniority: React.FC<Props> = ({
-    pilot
+    user
 }) => {
 
     const classes = useStyles()
-    const isManager = pilot.crewRole === CrewRoleEnum.manager
-    const characteristic = getCharacteristic(pilot)
+    const characteristic = getCharacteristic(user)
 
     const seniorityResult = getSeniorityResult(characteristic)
 
@@ -52,8 +52,8 @@ export const ProfileSeniority: React.FC<Props> = ({
         <div className={classes.seniority__result} >
             <div className={classes.seniority__result_value} >{seniorityResult}</div>
         </div>
-        {isManager ?
-            <Chart pilot={pilot}
+        {getCookieByPropertyName('isManager') === 'true' ?
+            <Chart pilot={user}
                 characteristic={characteristic}
                 classes={classes.seniority__chart} />
             : <></>}
