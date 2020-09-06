@@ -1,5 +1,7 @@
-export const DEFAULT = 'DEFAULT'
+export const LOGOUT = 'LOGOUT'
+
+export const logOut = () => ({type: LOGOUT} as const)
 
 export const actions = {
-    defaultActionCreator: () => ({type: DEFAULT} as const),
+    logOut
 }

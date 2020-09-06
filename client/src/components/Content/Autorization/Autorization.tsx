@@ -5,6 +5,8 @@ import { Theme, Typography } from "@material-ui/core";
 
 import profileIcon_Default from "../../../assets/profileIcon_Default.png"
 import { AutorizationForm } from "./AutorizationForm";
+import { useSelector } from "react-redux";
+import { isAuthorization } from "../../../redux/Profile/profile-selectors";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,8 +33,21 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Autorization: React.FC = () => {
+export type MapDispatchToProps = {
+  logOut: () => any
+}
+
+export type MapStateToProps = {
+
+}
+
+export const Autorization: React.FC<MapDispatchToProps> = (props) => {
   const classes = useStyles()
+  const isAuth = useSelector(isAuthorization)
+
+  if (isAuth) {
+    props.logOut()
+  }
 
   return (
     <div className={classes.autorization}>
