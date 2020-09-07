@@ -4,34 +4,47 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
+import java.util.Date;
 
 public class JwtUser implements UserDetails {
 
     private final Integer userId;
-    private final String userName;
-    private final String userSurname;
-    private final String userPatronymic;
+    //private final String userRole;
     private final String userLogin;
+    private final String userStatus;
+    private final String firstName;
+    private final String lastName;
+    private final String patronymic;
     private final String userPassword;
-    private final String userRole;
+    private final String crewRole;
+    private final Date standingFromDate;
+    private final Date standingFromDateInRole;
+    private final Integer reliabilityIndex;
+    private final Integer rewardsAndPunishments;
+
     private final boolean isEnable;
     private final Collection<? extends GrantedAuthority> authorities;
 
-
-    public JwtUser(Integer userId, String userName, String userSurname, String userPatronymic, String userLogin,
-                   String userPassword, String userRole, boolean isEnable, Collection<? extends GrantedAuthority> authorities) {
+    public JwtUser(Integer userId, String userLogin, String userStatus, String firstName, String lastName,
+                   String patronymic, String userPassword, String crewRole, Date standingFromDate, Date standingFromDateInRole,
+                   Integer reliabilityIndex, Integer rewardsAndPunishments, boolean isEnable, Collection<? extends GrantedAuthority> authorities) {
         this.userId = userId;
-        this.userName = userName;
-        this.userSurname = userSurname;
-        this.userPatronymic = userPatronymic;
         this.userLogin = userLogin;
+        this.userStatus = userStatus;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
         this.userPassword = userPassword;
-        this.userRole = userRole;
+        this.crewRole = crewRole;
+        this.standingFromDate = standingFromDate;
+        this.standingFromDateInRole = standingFromDateInRole;
+        this.reliabilityIndex = reliabilityIndex;
+        this.rewardsAndPunishments = rewardsAndPunishments;
         this.isEnable = isEnable;
         this.authorities = authorities;
     }
-
 
     @JsonIgnore
     public Integer getUserId() { return userId; }
@@ -51,7 +64,7 @@ public class JwtUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return firstName;
     }
 
     @Override
@@ -72,19 +85,39 @@ public class JwtUser implements UserDetails {
         return isEnable;
     }
 
-    public String getUserSurname() {
-        return userSurname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getUserPatronymic() {
-        return userPatronymic;
+        return patronymic;
     }
 
     public String getUserLogin() {
         return userLogin;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public String getCrewRole() {
+        return crewRole;
+    }
+
+    public Date getStandingFromDate() {
+        return standingFromDate;
+    }
+
+    public Date getStandingFromDateInRole() {
+        return standingFromDateInRole;
+    }
+
+    public Integer getReliabilityIndex() {
+        return reliabilityIndex;
+    }
+
+    public Integer getRewardsAndPunishments() {
+        return rewardsAndPunishments;
+    }
+
+    public String getuserStatus() {
+        return userStatus;
     }
 }

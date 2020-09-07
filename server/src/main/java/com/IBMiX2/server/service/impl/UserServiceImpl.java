@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String setNewUser(User user) throws JsonProcessingException {
-        user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
+        userRepository.save(user);
         logger.info("setNewUser -> new user successfully registered {}", user);
         return mapper.writeValueAsString(user);
     }
