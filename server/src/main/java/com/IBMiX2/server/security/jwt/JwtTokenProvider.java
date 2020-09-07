@@ -1,6 +1,7 @@
 package com.IBMiX2.server.security.jwt;
 
 
+import com.IBMiX2.server.domain.UserRole;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +44,11 @@ public class JwtTokenProvider {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
 
-    public String createToken(String username, String role) {
+    public String createToken(String username, UserRole role) {
 
         Claims claims = Jwts.claims().setSubject(username);
         List<String> roles = new ArrayList<>();
-        roles.add(role);
+        roles.add(role.toString());
         claims.put("roles", roles);
 
         Date now = new Date();

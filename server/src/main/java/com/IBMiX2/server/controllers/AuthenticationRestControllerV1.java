@@ -34,15 +34,11 @@ public class AuthenticationRestControllerV1 {
         this.userService = userService;
     }
 
-    //@PostMapping("login")
-    @GetMapping("login")
-    //public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
-     public ResponseEntity login(@RequestParam String userLogin, @RequestParam String userPassword) {
-            try {
-                //String userLogin = requestDto.getUserLogin();
-                //authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin, requestDto.getUserPassword()));
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin, userPassword
-                ));
+    @PostMapping("login")
+    public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
+        try {
+                String userLogin = requestDto.getUserLogin();
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin, requestDto.getUserPassword()));
                 User user = userService.findUserByUserLogin(userLogin);
 
             if (user == null) {
@@ -52,10 +48,9 @@ public class AuthenticationRestControllerV1 {
             String token = jwtTokenProvider.createToken(userLogin, user.getUserRole());
 
             Map<Object, Object> response = new HashMap<>();
-            //TODO: переименовать поля на стороне бека
-            response.put("firstName", user.getUserName());
-            response.put("secondName", user.getUserSurname());
-            response.put("patronymic", user.getUserPatronymic());
+            response.put("firstName", user.getFirstName());
+            response.put("secondName", user.getLastName());
+            response.put("patronymic", user.getPatronymic());
             response.put("crewRole", "КВС-инстр");
             response.put("standingFromDate", "2018-05-11");
             response.put("standingFromDateInRole", "2020-05-11");
