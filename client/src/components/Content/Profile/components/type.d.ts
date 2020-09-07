@@ -1,7 +1,7 @@
 export enum ProfileFieldLabel {
     firstName = 'Имя',
     lastName = 'Фамилия',
-    patronimic = 'Отчество',
+    patronymic = 'Отчество',
     crewRole = 'Должность',
     standingFromDate = 'Дата начала работы в компании',
     standingFromDateInRole = 'Дата заступления на текущую должность',
