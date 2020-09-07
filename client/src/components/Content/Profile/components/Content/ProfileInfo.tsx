@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-    pilot: ProfileFieldType
+    user: ProfileFieldType
 }
 
 export const ProfileInfo: React.FC<Props> = ({
-    pilot
+    user
 }) => {
     const classes = useStyles()
 
@@ -42,10 +42,10 @@ export const ProfileInfo: React.FC<Props> = ({
             alt='Профиль'
             className={classes.profileInfo__icon} />
         <div className={classes.profileInfo__fields}>
-            <ProfileField disabled={true} label={ProfileFieldLabel.firstName} value={pilot.firstName} />
-            <ProfileField disabled={true} label={ProfileFieldLabel.lastName} value={pilot.lastName} />
-            <ProfileField disabled={true} label={ProfileFieldLabel.patronimic} value={pilot.patronymic} />
-            <ProfileField disabled={true} label={ProfileFieldLabel.crewRole} value={pilot.crewRole} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.firstName} value={user.firstName} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.lastName} value={user.lastName} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.patronimic} value={user.patronymic} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.crewRole} value={user.crewRole} />
         </div>
     </div>)
 }

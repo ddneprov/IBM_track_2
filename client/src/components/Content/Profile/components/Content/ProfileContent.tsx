@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-  pilot: ProfileFieldType
+  user: ProfileFieldType
 }
 
 export const ProfileContent: React.FC<Props> = ({
-  pilot
+  user
 }) => {
   const classes = useStyles()
 
@@ -35,9 +35,9 @@ export const ProfileContent: React.FC<Props> = ({
 
   return (<div className={classes.profile__content}>
     <ProfileTabFrame title={titleTabs.profileInfo}
-      Component={<ProfileInfo pilot={pilot} />} />
+      Component={<ProfileInfo user={user} />} />
     <ProfileTabFrame title={titleTabs.seniority}
-      Component={<ProfileSeniority pilot={pilot} />} />
+      Component={<ProfileSeniority user={user} />} />
     {/* <Divider orientation='vertical'
       variant='middle' />
         <ProfileTabFrame title={titleTabs.seniority}

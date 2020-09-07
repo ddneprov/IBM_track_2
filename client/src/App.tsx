@@ -1,4 +1,5 @@
 import React from "react";
+import { CookiesProvider } from 'react-cookie';
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { BrowserRouter } from "react-router-dom";
 import { Header } from './components/Header';
@@ -17,12 +18,14 @@ const App: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <BrowserRouter>
-      <div className={classes.app}>
-        <Header />
-        <Content />
-      </div>
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <div className={classes.app}>
+          <Header />
+          <Content />
+        </div>
+      </BrowserRouter>
+    </CookiesProvider>
   );
 };
 
