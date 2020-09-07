@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { BrowserRouter } from "react-router-dom";
 import { Header } from './components/Header';
-import { Content } from "./components/Content";
+import { Content } from "./components/Content/Content";
 
 const useStyles = makeStyles(
   createStyles({
@@ -16,10 +17,12 @@ const App: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.app}>
-      <Header />
-      <Content />
-    </div>
+    <BrowserRouter>
+      <div className={classes.app}>
+        <Header />
+        <Content />
+      </div>
+    </BrowserRouter>
   );
 };
 

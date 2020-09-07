@@ -62,8 +62,28 @@ export const AutorizationForm: React.FC = () => {
             Password: ''
         }}
         onSubmit={async (values) => {
-            await new Promise((resolve) => setTimeout(resolve, 500));
+            /**
+                         await new Promise((resolve) => setTimeout(resolve, 500));
             alert(JSON.stringify(values, null, 2));
+             */
+            let response = await fetch('http://localhost:1337/api/v1/auth/login', {
+                body: JSON.stringify({
+                    userLogin: values.Login,
+                    userPassword: values.Password
+                })
+            })
+
+            let result = await response.json()
+
+            console.log(result)
+
+            if (response.ok && result.token) {
+                //browserHistory.push('/Profile')
+                alert(result)
+            } 
+            else {
+                alert(`${result.error} : ${result.message}`)
+            }
         }}
         validationSchema={Yup.object().shape({
             Login: Yup.string().email("Login is not valid").required("Required"),
@@ -99,15 +119,15 @@ export const AutorizationForm: React.FC = () => {
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
 
-                    <Button type="submit" 
-                            disabled={ errors.Login !== undefined ||
-                                       errors.Password !== undefined ||
-                                       values.Login === '' ||
-                                       values.Password === '' ||
-                                       isSubmitting}
-                            variant="contained"
-                            className={classes.autorizationForm__button_submit}>
-                        {isSubmitting ? <CircularProgress className={classes.autorizationform__loader}/> : <span>Confirm</span>}
+                    <Button type="submit"
+                        disabled={errors.Login !== undefined ||
+                            errors.Password !== undefined ||
+                            values.Login === '' ||
+                            values.Password === '' ||
+                            isSubmitting}
+                        variant="contained"
+                        className={classes.autorizationForm__button_submit}>
+                        {isSubmitting ? <CircularProgress className={classes.autorizationform__loader} /> : <span>Confirm</span>}
                     </Button>
                 </form>)
         }}
