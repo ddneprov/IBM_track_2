@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             padding: theme.spacing(2),
-            borderRadius: '20px',
+            borderRadius: '10px',
             backgroundColor: Seniority_Color.green
         }
     })

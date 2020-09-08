@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '44rem'
         },
         tab__item_title: {
-            borderRadius: '0px 0px 30px 30px',
+            borderRadius: '0px 0px 10px 10px',
             padding: '1rem 3rem',
             backgroundColor: IBM_Default_Color.black,
             color: IBM_Default_Color.white
