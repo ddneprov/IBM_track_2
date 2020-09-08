@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 
 import profileIcon from '../../../../../assets/profile__photo.png'
 import { ProfileFieldLabel, ProfileFieldType } from "../type.d"
-import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
+import { Seniority_Color } from "../../../../../base/types/ColorBase"
 import { ProfileField } from "./components/ProfileField"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'column',
             padding: theme.spacing(2),
             borderRadius: '20px',
-            backgroundColor: IBM_Default_Color.green
+            backgroundColor: Seniority_Color.green
         }
     })
 );
