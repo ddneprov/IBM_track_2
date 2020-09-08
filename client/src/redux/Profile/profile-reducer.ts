@@ -8,10 +8,7 @@ const defaultUserObject = {}
 
 let initialState = {
     currentUser: config.getDebugEnable() ? pilots[0] as ProfileFieldType :
-                                            defaultUserObject,
-    selectedUser: {
-
-    } as ProfileFieldType
+                                            defaultUserObject
 }
 
 /**
