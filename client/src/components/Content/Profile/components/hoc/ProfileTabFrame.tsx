@@ -10,13 +10,18 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             flexDirection: "column",
             flexShrink: 1,
-            width: '44rem'
+            marginBottom: theme.spacing(10),
+            paddingBottom: theme.spacing(5),
+            width: '50rem',
+            backgroundColor: IBM_Default_Color.white,
+            borderRadius: '10px'
         },
         tab__item_title: {
             borderRadius: '0px 0px 10px 10px',
             padding: '1rem 3rem',
             backgroundColor: IBM_Default_Color.black,
-            color: IBM_Default_Color.white
+            color: IBM_Default_Color.white,
+            fontWeight: 'bold'
         }
     })
 );
