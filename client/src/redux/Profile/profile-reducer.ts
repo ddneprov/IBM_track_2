@@ -18,7 +18,7 @@ let initialState = {
  * Редюсер для страницы пользователя.
  */
 export const profileReducer = (state = initialState, action: ActionsType): InitialStateType => {
-    debugger
+
     switch (action.type) {
         case LOGOUT: {
             return {
