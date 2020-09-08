@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserControllers {
 
@@ -39,5 +39,10 @@ public class UserControllers {
     @RequestMapping(value = "/setUserPasswordById", method = RequestMethod.POST)
     public String setUserPasswordById(@RequestBody ArrayList<String> userLogInfo){
         return userServiceImpl.resetUserPassword(userLogInfo);
+    }
+
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    public String setUserPasswordById(){
+        return "everything is ok";
     }
 }
