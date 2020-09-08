@@ -1,8 +1,9 @@
 package com.IBMiX2.server.security.jwt;
 
 
-import com.IBMiX2.server.domain.UserRole;
+import com.IBMiX2.server.domain.User;
 import io.jsonwebtoken.*;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,10 +17,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 
 @Slf4j
 @Component
@@ -44,12 +43,20 @@ public class JwtTokenProvider {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
 
-    public String createToken(String username, UserRole role) {
+    public String createToken(String username, @NonNull User user) {
 
         Claims claims = Jwts.claims().setSubject(username);
-        List<String> roles = new ArrayList<>();
-        roles.add(role.toString());
-        claims.put("roles", roles);
+        claims.put("id", user.getUserId());
+        claims.put("firstName", user.getFirstName());
+        claims.put("secondName", user.getLastName());
+        claims.put("patronymic", user.getPatronymic());
+        claims.put("crewRole", user.getCrewRole());
+        claims.put("standingFromDate", user.getStandingFromDate().toString());
+        claims.put("standingFromDateInRole", user.getStandingFromDateInRole().toString());
+        claims.put("reliabilityIndex", user.getReliabilityIndex());
+        claims.put("rewardsAndPunishments", user.getRewardsAndPunishments());
+        claims.put("userStatus", user.getUserStatus().toString());
+        claims.put("role", user.getUserRole().toString());
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
