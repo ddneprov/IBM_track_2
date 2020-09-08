@@ -55,12 +55,12 @@ public class User {
     private String crewRole;
 
     /**
-     * Начало работы в компании
+     * Стаж пилота
      */
     private Date standingFromDate;
 
     /**
-     * Начало работы в текущей должности
+     * Стаж в должности
      */
     private Date standingFromDateInRole;
 
