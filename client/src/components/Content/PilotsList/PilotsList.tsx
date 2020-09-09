@@ -4,7 +4,7 @@ import { List, ListItem, Typography } from "@material-ui/core"
 import Button from '@material-ui/core/Button'
 import { NavLink } from 'react-router-dom'
 import pilots from "../../../moc/pilots_preprod.json"
-import { IBM_Default_Color } from "../../../base/types/ColorBase"
+import { IBM_Default_Color, Seniority_Color } from "../../../base/types/ColorBase"
 import { getSeniorityResult, getCharacteristic, getColorBySeniority } from "../../../utils/Profile/characteristic"
 import { RouterMap } from "../../../base/types/RouterMap"
 const profileIcon_Default = require("../../../assets/profileIcon_Default.png")
@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: '1em'
             },
             '&::-webkit-scrollbar-track': {
+                borderRadius: '30px',
                 boxShadow: 'inset 0 0 6px rgba(0, 0, 0, 0.3)',
                 backgroundColor: IBM_Default_Color.white
             },
             '&::-webkit-scrollbar-thumb': {
-                outline: '1px solid slategrey',
                 borderRadius: '50px',
-                backgroundColor: '#47CF73',
+                backgroundColor: Seniority_Color.green,
                 backgroundImage: `-webkit-gradient(linear, 0 0, 0 100%,
                               color-stop(.5, rgba(255, 255, 255, .2)),
                                       color-stop(.5, transparent), to(transparent))`
