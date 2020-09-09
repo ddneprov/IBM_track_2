@@ -1,6 +1,7 @@
 package com.IBMiX2.server.service.impl;
 
 import com.IBMiX2.server.domain.User;
+import com.IBMiX2.server.domain.UserRole;
 import com.IBMiX2.server.reprisitory.UserRepository;
 import com.IBMiX2.server.service.UserService;
 import com.IBMiX2.server.ulits.StringUtils;
@@ -39,8 +40,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers(){
         List<User> users = userRepository.findAll();
-        logger.info("getAllUsers -> users found {}", users.size());
+        logger.info("getAllUsers -> found {} users", users.size());
         return users;
+    }
+
+    @Override
+    public List<User> getAllPilots(){
+        List<User> pilotsList = userRepository.findAllByUserRole(UserRole.ROLE_PILOT);
+        logger.info("getAllUsers -> found {} pilots", pilotsList.size());
+        return pilotsList;
     }
 
     @Override

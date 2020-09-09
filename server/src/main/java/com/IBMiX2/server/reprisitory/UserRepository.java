@@ -1,6 +1,7 @@
 package com.IBMiX2.server.reprisitory;
 
 import com.IBMiX2.server.domain.User;
+import com.IBMiX2.server.domain.UserRole;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +14,5 @@ public interface UserRepository extends CrudRepository<User, String> {
     public User findFirstByUserId(Integer userId);
     public User findFirstByUserLoginAndUserPassword(String userLogin, String userPassword);
     public User findUserByUserLogin(String userLogin);
+    public List<User> findAllByUserRole(UserRole userRole);
 }
