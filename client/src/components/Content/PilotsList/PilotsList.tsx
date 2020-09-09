@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '95%',
             height: '35rem',
             flexDirection: 'column',
+            margin: theme.spacing(2),
+            backgroundColor: IBM_Default_Color.white,
+            borderRadius: '20px',
+            boxShadow: '0px 4px 20px 5px rgba(0, 0, 0, 0.25)',
             overflow: 'auto',
             '&::-webkit-scrollbar': {
                 width: '1em'
