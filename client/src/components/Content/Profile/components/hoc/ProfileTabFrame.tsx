@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: '10px'
         },
         tab__item_title: {
+            textTransform: 'uppercase',
             borderRadius: '0px 0px 10px 10px',
             padding: '1rem 3rem',
             backgroundColor: IBM_Default_Color.black,
