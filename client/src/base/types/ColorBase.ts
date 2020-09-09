@@ -5,7 +5,7 @@ export enum IBM_Default_Color {
     black = '#000',
     white = '#F5F5F5',
     gray = '#eee',
-    blue = '#24639E',
+    blue = '#0062ff',
     error = '#F00',
 }
 

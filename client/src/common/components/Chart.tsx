@@ -3,7 +3,7 @@ import React from "react"
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell,
 } from 'recharts';
-import { IBM_Default_Color, Seniority_Color } from "../../base/types/ColorBase";
+import { IBM_Default_Color } from "../../base/types/ColorBase";
 import { ProfileFieldType } from "../../components/Content/Profile/components/type";
 
 const chartStyle = {
@@ -41,7 +41,7 @@ export const Chart: React.FC<Props> = ({
         <Bar dataKey="star" fill={IBM_Default_Color.black} background={{ fill: IBM_Default_Color.gray }} >
             {
                 characteristic?.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={Seniority_Color.green} />
+                    <Cell key={`cell-${index}`} fill={IBM_Default_Color.blue} />
                 ))
             }
         </Bar>
