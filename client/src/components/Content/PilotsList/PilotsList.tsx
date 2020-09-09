@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: '1em'
             },
             '&::-webkit-scrollbar-track': {
+                borderRadius: '30px',
                 boxShadow: 'inset 0 0 6px rgba(0, 0, 0, 0.3)',
                 backgroundColor: IBM_Default_Color.white
             },
             '&::-webkit-scrollbar-thumb': {
-                outline: '1px solid slategrey',
                 borderRadius: '50px',
-                backgroundColor: '#47CF73',
+                backgroundColor: IBM_Default_Color.blue,
                 backgroundImage: `-webkit-gradient(linear, 0 0, 0 100%,
                               color-stop(.5, rgba(255, 255, 255, .2)),
                                       color-stop(.5, transparent), to(transparent))`

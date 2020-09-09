@@ -1,6 +1,6 @@
 import { ProfileFieldType } from "../../components/Content/Profile/components/type"
 import { CharapterSeniority } from "./type"
-import { IBM_Default_Color } from "../../base/types/ColorBase"
+import { Seniority_Color } from "../../base/types/ColorBase"
 
 /**
  * Максимальное значение характеристики
@@ -76,16 +76,16 @@ export const getSeniorityResult = (charapters: Array<CharapterSeniority>) => {
  */
 export const getColorBySeniority = (seniority: number): string => {
     if (seniority === 5)
-        return IBM_Default_Color.green
+        return Seniority_Color.green
     else if (seniority >= 4) {
-        return IBM_Default_Color.yellow
+        return Seniority_Color.yellow
     }
     else if (seniority >= 3) {
-        return IBM_Default_Color.orange
+        return Seniority_Color.orange
     }
     else if (seniority >= 2) {
-        return IBM_Default_Color.red
+        return Seniority_Color.red
     }
     else
-        return IBM_Default_Color.black
+        return Seniority_Color.black
 }

@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             padding: theme.spacing(2),
-            borderRadius: '20px',
-            backgroundColor: IBM_Default_Color.green
+            borderRadius: '10px',
+            backgroundColor: IBM_Default_Color.blue
         }
     })
 );
