@@ -48,7 +48,7 @@ public class JwtTokenProvider {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("id", user.getUserId());
         claims.put("firstName", user.getFirstName());
-        claims.put("secondName", user.getLastName());
+        claims.put("lastName", user.getLastName());
         claims.put("patronymic", user.getPatronymic());
         claims.put("crewRole", user.getCrewRole());
         claims.put("standingFromDate", user.getStandingFromDate().toString());
