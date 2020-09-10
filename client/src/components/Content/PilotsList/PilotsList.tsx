@@ -70,9 +70,10 @@ export const PilotsList: React.FC = () => {
     const classes = useStyles()
 
     const getFIO = (pilot: any) => {
+        debugger
         const delimiterDefault = " "
         return [pilot.firstName,
-        pilot.lastName[0] + '.',
+        pilot.secondName[0] + '.',
         pilot.patronymic[0] + '.'].join(delimiterDefault)
     }
 
