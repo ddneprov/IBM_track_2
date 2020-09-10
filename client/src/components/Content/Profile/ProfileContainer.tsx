@@ -25,20 +25,20 @@ type Props = ReturnType<typeof mapStateToProps> &
 class ProfileClassComponent extends React.Component<Props> {
     render() {
         const userId = this.props.match.params.userId
-        const pilots = require("../../../moc/pilots_preprod.json") as Array<ProfileFieldType>
-        let user = pilots.find((pilot, index) => index.toString() === userId);
 
-        // TODO: исправить логику, чтобы был getEnableDebug и поддерживалась prod версия
-        if (Object.keys(this.props.currentUser).length > 0) {
+        if (userId) {
+            const pilots = require("../../../moc/pilots_preprod.json") as Array<ProfileFieldType>
+            let user = pilots.find((pilot, index) => index.toString() === userId);
+            if (user) {
+                return <Profile user={user}
+                    logOut={this.props.logOut} />
+            }
+        } else if (Object.keys(this.props.currentUser).length > 0) {
             return <Profile user={this.props.currentUser as ProfileFieldType}
                 logOut={this.props.logOut} />
         }
-        else if (!user) {
-            return <Redirect to={`/${RouterMap.Auth}`} />
-        }
-
-        return <Profile user={user}
-            logOut={this.props.logOut} />
+        
+        return <Redirect to={`/${RouterMap.Auth}`} />
     }
 };
 
