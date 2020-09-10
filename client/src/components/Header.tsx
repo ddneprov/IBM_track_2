@@ -40,7 +40,7 @@ export const Header = () => {
   const [isOpen, setState] = useState(false);
   const pages: Array<NavigationItemInfo> = [
     { text: "Мой профиль", pathURL: RouterMap.Profile },
-    { text: "Выйти", pathURL: RouterMap.Auth }
+    //{ text: "Выйти", pathURL: RouterMap.Auth } TODO: Вернуть, когда будет исправлена логика выхода из аккаунта
   ]
 
   const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
