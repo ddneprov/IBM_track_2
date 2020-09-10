@@ -4,7 +4,8 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import * as Yup from "yup";
 import jwt from 'jwt-decode'
-
+import { authAPI } from "../../../api/auth/auth-api";
+import { UserAuth } from "../../../api/auth/auth-type.d";
 import { IFormInput } from "./type";
 import { FormInput } from "./FormInput";
 import { Button } from "@material-ui/core";
@@ -68,8 +69,20 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
         }}
         onSubmit={async (values) => {
             //const response = await authAPI.logIn(new UserAuth(values.Login, values.Password));
-            //alert(response)
-            const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwucnUiLCJpZCI6MzAsImZpcnN0TmFtZSI6IkRlbmlzIiwic2Vjb25kTmFtZSI6IlBldHJvdiIsInBhdHJvbnltaWMiOiJBbmRyZWV2aWNoIiwiY3Jld1JvbGUiOiLQmtCS0KEt0YHRgtCw0LbQtdGAIiwic3RhbmRpbmdGcm9tRGF0ZSI6IjIwMTEtMDYtMTMgMDQ6MDA6MDAuMCIsInN0YW5kaW5nRnJvbURhdGVJblJvbGUiOiIyMDIwLTA1LTExIDAzOjAwOjAwLjAiLCJyZWxpYWJpbGl0eUluZGV4Ijo1LCJyZXdhcmRzQW5kUHVuaXNobWVudHMiOjAsInVzZXJTdGF0dXMiOiJBQ1RJVkUiLCJyb2xlIjoiUk9MRV9NQU5BR0VSIiwiaWF0IjoxNTk5NjA2MjU2LCJleHAiOjE1OTk2MDk4NTZ9.lcZmTuCMC2rEOHOXDg9CdEecIMnupzW_UVPgMNE1zmw";
+            let response = await fetch('http://130.193.38.154:1337/api/v1/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    'userLogin': values.Login,
+                    'userPassword': values.Password
+                })
+            });
+
+            let result = await response.json();
+            console.log(result)
+            const token = result.token;
             console.log(jwt(token))
             props.setUser(token)
         }}

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexShrink: 1,
             marginBottom: theme.spacing(10),
             paddingBottom: theme.spacing(5),
-            width: '50rem',
+            width: '40rem',
             backgroundColor: IBM_Default_Color.white,
             borderRadius: '10px'
         },
