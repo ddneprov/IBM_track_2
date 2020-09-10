@@ -3,7 +3,7 @@ import { Autorization, MapStateToProps } from './Autorization';
 import { AppStateType } from '../../../redux/redux-store';
 import { connect } from 'react-redux';
 import { MapDispatchToProps } from './Autorization';
-import { logOut } from './../../../redux/Profile/profile-actions'
+import { logOut, setUser } from './../../../redux/Profile/profile-actions'
 
 const mapStateToProps = (state: AppStateType) => {
     return {
@@ -21,5 +21,5 @@ class AutorizationClassComponent extends React.Component<MapStateToProps & MapDi
 
 export const AutorizationContainter = connect<MapStateToProps, MapDispatchToProps, {}, AppStateType>(
     mapStateToProps,
-    {logOut}
+    {logOut, setUser}
 )(AutorizationClassComponent)

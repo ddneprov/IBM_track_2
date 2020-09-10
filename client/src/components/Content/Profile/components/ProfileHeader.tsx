@@ -4,8 +4,6 @@ import clsx from 'clsx'
 import { IBM_Default_Color } from "../../../../base/types/ColorBase"
 import profileStatusIcon from "../../../../assets/profile__icon_status.png"
 import { Typography, Button, Theme } from "@material-ui/core"
-import { NavLink } from 'react-router-dom'
-import { RouterMap } from "../../../../base/types/RouterMap"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,13 +29,15 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type Props = {
+type MapStateToProps = {
   fio: string
 }
 
-export const ProfileHeader: React.FC<Props> = ({
-  fio
-}) => {
+type MapDispatchToProps = {
+  logOut: () => any
+}
+
+export const ProfileHeader: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
   const classes = useStyles()
 
   return (<div className={classes.profile__header}>
@@ -46,12 +46,11 @@ export const ProfileHeader: React.FC<Props> = ({
          className={classes.icon} />
     <Typography variant='h5'
                 className={clsx(classes.fio, 'alignLeft')}
-                >{fio}</Typography>
+                >{props.fio}</Typography>
     <Button type="submit"
             variant="contained"
             color="secondary"
-            component={NavLink}
-            to={RouterMap.Auth}
+            onClick={props.logOut}
             className={classes.logOut_button}>
       Log out
     </Button>

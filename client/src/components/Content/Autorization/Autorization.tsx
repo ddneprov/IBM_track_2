@@ -7,6 +7,7 @@ import profileIcon_Default from "../../../assets/profileIcon_Default.png"
 import { AutorizationForm } from "./AutorizationForm";
 import { useSelector } from "react-redux";
 import { isAuthorization } from "../../../redux/Profile/profile-selectors";
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export type MapDispatchToProps = {
   logOut: () => any
+  setUser: (user: string) => any
 }
 
 export type MapStateToProps = {
@@ -44,9 +46,8 @@ export type MapStateToProps = {
 export const Autorization: React.FC<MapDispatchToProps> = (props) => {
   const classes = useStyles()
   const isAuth = useSelector(isAuthorization)
-
   if (isAuth) {
-    props.logOut()
+    return <Redirect to={'/Profile'}/>
   }
 
   return (
@@ -58,6 +59,6 @@ export const Autorization: React.FC<MapDispatchToProps> = (props) => {
                   align="center"
                   noWrap
                   className={classes.autorization__title}>Sign In</Typography>
-      <AutorizationForm />
+      <AutorizationForm setUser={props.setUser}/>
     </div>)
 }

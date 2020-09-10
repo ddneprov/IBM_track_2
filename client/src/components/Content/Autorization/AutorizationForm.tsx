@@ -3,13 +3,14 @@ import { Formik } from "formik";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import * as Yup from "yup";
+import jwt from 'jwt-decode'
 
 import { IFormInput } from "./type";
 import { FormInput } from "./FormInput";
 import { Button } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
 
-interface IFormState {
+export interface IFormState {
     login: IFormInput,
     password: IFormInput
 }
@@ -39,7 +40,11 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export const AutorizationForm: React.FC = () => {
+export type MapDispatchToProps = {
+    setUser: (user: string) => any
+}
+
+export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
 
     const classes = useStyles()
 
@@ -62,28 +67,11 @@ export const AutorizationForm: React.FC = () => {
             Password: ''
         }}
         onSubmit={async (values) => {
-            /**
-                         await new Promise((resolve) => setTimeout(resolve, 500));
-            alert(JSON.stringify(values, null, 2));
-             */
-            let response = await fetch('http://localhost:1337/api/v1/auth/login', {
-                body: JSON.stringify({
-                    userLogin: values.Login,
-                    userPassword: values.Password
-                })
-            })
-
-            let result = await response.json()
-
-            console.log(result)
-
-            if (response.ok && result.token) {
-                //browserHistory.push('/Profile')
-                alert(result)
-            } 
-            else {
-                alert(`${result.error} : ${result.message}`)
-            }
+            //const response = await authAPI.logIn(new UserAuth(values.Login, values.Password));
+            //alert(response)
+            const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwucnUiLCJpZCI6MzAsImZpcnN0TmFtZSI6IkRlbmlzIiwic2Vjb25kTmFtZSI6IlBldHJvdiIsInBhdHJvbnltaWMiOiJBbmRyZWV2aWNoIiwiY3Jld1JvbGUiOiLQmtCS0KEt0YHRgtCw0LbQtdGAIiwic3RhbmRpbmdGcm9tRGF0ZSI6IjIwMTEtMDYtMTMgMDQ6MDA6MDAuMCIsInN0YW5kaW5nRnJvbURhdGVJblJvbGUiOiIyMDIwLTA1LTExIDAzOjAwOjAwLjAiLCJyZWxpYWJpbGl0eUluZGV4Ijo1LCJyZXdhcmRzQW5kUHVuaXNobWVudHMiOjAsInVzZXJTdGF0dXMiOiJBQ1RJVkUiLCJyb2xlIjoiUk9MRV9NQU5BR0VSIiwiaWF0IjoxNTk5NjA2MjU2LCJleHAiOjE1OTk2MDk4NTZ9.lcZmTuCMC2rEOHOXDg9CdEecIMnupzW_UVPgMNE1zmw";
+            console.log(jwt(token))
+            props.setUser(token)
         }}
         validationSchema={Yup.object().shape({
             Login: Yup.string().email("Login is not valid").required("Required"),
