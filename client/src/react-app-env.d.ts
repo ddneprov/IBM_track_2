@@ -16,4 +16,4 @@ class Config {
     public getDebugEnable = () => this.DebugEnable
 }
 
-export const config = new Config(true)
+export const config = new Config(false)
