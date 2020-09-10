@@ -1,5 +1,6 @@
 import { profileReducer } from './Profile/profile-reducer';
-import { combineReducers, createStore} from "redux";
+import { combineReducers, createStore, Action, applyMiddleware} from "redux";
+import thunkMiddleware, {ThunkAction} from "redux-thunk";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -9,7 +10,11 @@ type RootReducerType = typeof rootReducer; // (globalstate: AppStateType) => App
 export type AppStateType = ReturnType<RootReducerType>
 
 export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
+export type BaseThunkType<A extends Action = Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
-export const store = createStore(rootReducer)
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
 // @ts-ignore
 window.__store__ = store

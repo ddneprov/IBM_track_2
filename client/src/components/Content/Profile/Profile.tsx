@@ -5,6 +5,8 @@ import { ProfileContent } from "./components/Content/ProfileContent";
 import { ProfileFieldType } from "./components/type";
 import { useSelector } from "react-redux";
 import { getCurrentUser, isAuthorization } from "../../../redux/Profile/profile-selectors";
+import { Redirect } from "react-router-dom";
+import { RouterMap } from "../../../base/types/RouterMap";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,32 +20,35 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-  user?: ProfileFieldType | undefined
+  user: ProfileFieldType
 }
 
-export const Profile: React.FC<Props> = ({
-  user
-}) => {
+export type MapDispatchToProps = {
+  logOut: () => any
+}
+
+export const Profile: React.FC<Props & MapDispatchToProps> = (props) => {
   const classes = useStyles()
   const delimiterDefault = " ";
   const isAuth = useSelector(isAuthorization)
   const currentUser = useSelector(getCurrentUser)
 
   if (isAuth) {
-    if (!user) {
+    let user = props.user
+
+    if (!props.user) {
       user = currentUser as ProfileFieldType
     }
 
-    const fio = [user.firstName, user.lastName, user.patronymic].join(delimiterDefault)
+    const fio = [user?.firstName, user?.secondName, user?.patronymic].join(delimiterDefault)
 
 
     return (<div className={classes.profile}>
-      {currentUser === user ? <ProfileHeader fio={fio} /> : <></>}
+      {currentUser === user ? <ProfileHeader fio={fio}
+                                             logOut={props.logOut} /> : <></>}
       <ProfileContent user={user} />
     </div>)
   } else {
-    return (<div>
-      NOT FOUND 404
-    </div>)
+    return <Redirect to={`/${RouterMap.Auth}`}/>
   }
 }

@@ -1,8 +1,8 @@
 export enum ProfileFieldLabel {
     firstName = 'Имя',
-    lastName = 'Фамилия',
+    secondName = 'Фамилия',
     patronymic = 'Отчество',
-    crewRole = 'Должность',
+    role = 'Должность',
     standingFromDate = 'Дата начала работы в компании',
     standingFromDateInRole = 'Дата заступления на текущую должность',
     reliabilityIndex = 'Индекс надежности',
@@ -13,12 +13,8 @@ export enum ProfileFieldLabel {
  * Перечисление ролей
  */
 export enum CrewRoleEnum {
-    twoP = '2П',
-    twoPintern = '2П-стажер',
-    manager = 'КВС-инстр',
-    kvs = 'КВС',
-    kvsExam = 'КВС-экзаменатор',
-    kvsIntern = 'КВС-стажер'
+    pilot = 'ROLE_PILOT',
+    manager = 'ROLE_MANAGER'
 }
 
 /**
@@ -28,9 +24,9 @@ export type CrewRoleType = CrewRoleEnum.twoP | CrewRoleEnum.twoPintern | CrewRol
 
 export type ProfileFieldType = {
     firstName: string, // Имя
-    lastName: string, // Фамилия
+    secondName: string, // Фамилия
     patronymic: string, // Отчество
-    crewRole: CrewRoleType | string, // должность
+    role: CrewRoleType | string, // должность
     standingFromDate: string, // Дата начала работы в компании
     standingFromDateInRole: string, // Дата заступления на текущую должность
     reliabilityIndex: int, // Индекс надежности

@@ -3,10 +3,11 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { List, ListItem, Typography } from "@material-ui/core"
 import Button from '@material-ui/core/Button'
 import { NavLink } from 'react-router-dom'
-import pilots from "../../../moc/pilots_preprod.json"
 import { IBM_Default_Color } from "../../../base/types/ColorBase"
 import { getSeniorityResult, getCharacteristic, getColorBySeniority } from "../../../utils/Profile/characteristic"
 import { RouterMap } from "../../../base/types/RouterMap"
+import { ProfileFieldType } from "../Profile/components/type"
+import { isUserManager } from "../../../utils/Profile/userHelpers"
 const profileIcon_Default = require("../../../assets/profileIcon_Default.png")
 
 const seniorityResSize = '4rem'
@@ -27,13 +28,13 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: '1em'
             },
             '&::-webkit-scrollbar-track': {
+                borderRadius: '30px',
                 boxShadow: 'inset 0 0 6px rgba(0, 0, 0, 0.3)',
                 backgroundColor: IBM_Default_Color.white
             },
             '&::-webkit-scrollbar-thumb': {
-                outline: '1px solid slategrey',
                 borderRadius: '50px',
-                backgroundColor: '#47CF73',
+                backgroundColor: IBM_Default_Color.blue,
                 backgroundImage: `-webkit-gradient(linear, 0 0, 0 100%,
                               color-stop(.5, rgba(255, 255, 255, .2)),
                                       color-stop(.5, transparent), to(transparent))`
@@ -68,40 +69,48 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const PilotsList: React.FC = () => {
     const classes = useStyles()
+    
+    if (isUserManager()) {
+        const pilots = require("../../../moc/pilots_preprod.json")
 
-    const getFIO = (pilot: any) => {
-        const delimiterDefault = " "
-        return [pilot.firstName,
-        pilot.lastName[0] + '.',
-        pilot.patronymic[0] + '.'].join(delimiterDefault)
+        const getFIO = (pilot: any) => {
+            debugger
+            const delimiterDefault = " "
+            return [pilot.firstName,
+            pilot.secondName[0] + '.',
+            pilot.patronymic[0] + '.'].join(delimiterDefault)
+        }
+
+        return (<List className={classes.pilotsList}>
+            {pilots.map((pilot: ProfileFieldType, key: string | number | null | undefined) => (<ListItem className={classes.pilotsList__item}
+                key={key}>
+                <Button fullWidth={true}
+                    component={NavLink}
+                    to={`/${RouterMap.Profile}/${key}`}>
+                    <img src={profileIcon_Default} alt="logo" className={classes.pilotsList__item_icon} />
+                    <Typography className={classes.pilotsList__item_fio}
+                        variant='h6'>
+                        {getFIO(pilot)}
+                    </Typography>
+                    {
+                        (function (seniority: number) {
+                            return (<div className={classes.pilotsList__item_seniority}
+                                style={{ borderColor: getColorBySeniority(seniority) }}>
+                                <div>
+                                    {seniority}
+                                </div>
+                            </div>)
+                        })(Number(
+                            getSeniorityResult(
+                                getCharacteristic(pilot)
+                            )
+                        ))
+                    }
+                </Button>
+            </ListItem>))}
+        </List>)
+    } else {
+        return (<div>404 NOT FOUND</div>)
     }
 
-    return (<List className={classes.pilotsList}>
-        {pilots.map((pilot, key) => (<ListItem className={classes.pilotsList__item}
-            key={key}>
-            <Button fullWidth={true}
-                component={NavLink}
-                to={`/${RouterMap.Profile}/${key}`}>
-                <img src={profileIcon_Default} alt="logo" className={classes.pilotsList__item_icon} />
-                <Typography className={classes.pilotsList__item_fio}
-                    variant='h6'>
-                    {getFIO(pilot)}
-                </Typography>
-                {
-                    (function (seniority: number) {
-                        return (<div className={classes.pilotsList__item_seniority}
-                            style={{ borderColor: getColorBySeniority(seniority) }}>
-                            <div>
-                                {seniority}
-                            </div>
-                        </div>)
-                    })(Number(
-                        getSeniorityResult(
-                            getCharacteristic(pilot)
-                        )
-                    ))
-                }
-            </Button>
-        </ListItem>))}
-    </List>)
 }

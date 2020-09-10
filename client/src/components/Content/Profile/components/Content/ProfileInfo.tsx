@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             padding: theme.spacing(2),
-            borderRadius: '20px',
-            backgroundColor: IBM_Default_Color.green
+            borderRadius: '10px',
+            backgroundColor: IBM_Default_Color.blue
         }
     })
 );
@@ -43,9 +43,9 @@ export const ProfileInfo: React.FC<Props> = ({
             className={classes.profileInfo__icon} />
         <div className={classes.profileInfo__fields}>
             <ProfileField disabled={true} label={ProfileFieldLabel.firstName} value={user.firstName} />
-            <ProfileField disabled={true} label={ProfileFieldLabel.lastName} value={user.lastName} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.secondName} value={user.secondName} />
             <ProfileField disabled={true} label={ProfileFieldLabel.patronymic} value={user.patronymic} />
-            <ProfileField disabled={true} label={ProfileFieldLabel.crewRole} value={user.crewRole} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.role} value={user.role} />
         </div>
     </div>)
 }

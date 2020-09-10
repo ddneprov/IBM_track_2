@@ -7,6 +7,10 @@ import profileIcon_Default from "../../../assets/profileIcon_Default.png"
 import { AutorizationForm } from "./AutorizationForm";
 import { useSelector } from "react-redux";
 import { isAuthorization } from "../../../redux/Profile/profile-selectors";
+import { Redirect } from "react-router-dom";
+import { ProfileFieldType } from "../Profile/components/type";
+import { isManager } from "../../../utils/Profile/userHelpers";
+import { RouterMap } from "../../../base/types/RouterMap";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,18 +39,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export type MapDispatchToProps = {
   logOut: () => any
+  setUser: (user: string) => any
 }
 
 export type MapStateToProps = {
-
+  currentUser: ProfileFieldType
 }
 
-export const Autorization: React.FC<MapDispatchToProps> = (props) => {
+export const Autorization: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
   const classes = useStyles()
   const isAuth = useSelector(isAuthorization)
-
   if (isAuth) {
-    props.logOut()
+    return <Redirect to={isManager(props.currentUser.role) ? `/${RouterMap.PilotsList}` : 
+                                                             `/${RouterMap.Profile}`}/>
   }
 
   return (
@@ -58,6 +63,6 @@ export const Autorization: React.FC<MapDispatchToProps> = (props) => {
                   align="center"
                   noWrap
                   className={classes.autorization__title}>Sign In</Typography>
-      <AutorizationForm />
+      <AutorizationForm setUser={props.setUser}/>
     </div>)
 }

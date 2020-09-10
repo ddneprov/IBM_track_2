@@ -5,7 +5,7 @@ import { Chart } from "../../../../../common/components/Chart"
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
 import { getCharacteristic, getSeniorityResult } from "../../../../../utils/Profile/characteristic"
 import starIcon from "../../../../../assets/Star.png"
-import { getCookieByPropertyName } from "../../../../../utils/cookieHelpers"
+import { isManager } from "../../../../../utils/Profile/userHelpers"
 
 const iconSize = '12rem'
 
@@ -52,7 +52,7 @@ export const ProfileSeniority: React.FC<Props> = ({
         <div className={classes.seniority__result} >
             <div className={classes.seniority__result_value} >{seniorityResult}</div>
         </div>
-        {getCookieByPropertyName('isManager') === 'true' ?
+        {isManager(user.role) ?
             <Chart pilot={user}
                 characteristic={characteristic}
                 classes={classes.seniority__chart} />

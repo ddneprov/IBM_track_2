@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         error: {
             fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
-            color: IBM_Default_Color.red,
-            borderColor: IBM_Default_Color.red
+            color: IBM_Default_Color.error,
+            borderColor: IBM_Default_Color.error
         },
         error__message: {
             padding: theme.spacing(1.5)

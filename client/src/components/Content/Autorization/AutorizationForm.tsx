@@ -1,15 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import { Formik } from "formik";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import * as Yup from "yup";
-
+import jwt from 'jwt-decode'
+import { authAPI } from "../../../api/auth/auth-api";
+import { UserAuth } from "../../../api/auth/auth-type.d";
 import { IFormInput } from "./type";
 import { FormInput } from "./FormInput";
 import { Button } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
 
-interface IFormState {
+export interface IFormState {
     login: IFormInput,
     password: IFormInput
 }
@@ -39,7 +41,11 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export const AutorizationForm: React.FC = () => {
+export type MapDispatchToProps = {
+    setUser: (user: string) => any
+}
+
+export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
 
     const classes = useStyles()
 
@@ -56,34 +62,37 @@ export const AutorizationForm: React.FC = () => {
         }
     }
 
+    const [isErrorAuth, setIsErrorAuth] = useState(false);
+
     return (<Formik
         initialValues={{
             Login: '',
             Password: ''
         }}
         onSubmit={async (values) => {
-            /**
-                         await new Promise((resolve) => setTimeout(resolve, 500));
-            alert(JSON.stringify(values, null, 2));
-             */
-            let response = await fetch('http://localhost:1337/api/v1/auth/login', {
+            //const response = await authAPI.logIn(new UserAuth(values.Login, values.Password));
+            let response = await fetch('http://130.193.38.154:1337/api/v1/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
                 body: JSON.stringify({
-                    userLogin: values.Login,
-                    userPassword: values.Password
+                    'userLogin': values.Login,
+                    'userPassword': values.Password
                 })
-            })
+            });
 
-            let result = await response.json()
-
-            console.log(result)
-
-            if (response.ok && result.token) {
-                //browserHistory.push('/Profile')
-                alert(result)
-            } 
-            else {
-                alert(`${result.error} : ${result.message}`)
+            let result = await response.json();
+            console.log('response: ', result)
+            if (!result.token) {
+                setIsErrorAuth(true)
+                alert('Неверный логин или пароль !')
+            } else {
+                setIsErrorAuth(false)
             }
+            const token = result.token;
+            console.log('jwt_decode: ', jwt(token))
+            props.setUser(token)
         }}
         validationSchema={Yup.object().shape({
             Login: Yup.string().email("Login is not valid").required("Required"),
@@ -106,7 +115,7 @@ export const AutorizationForm: React.FC = () => {
                     <FormInput label={inputs.login.label}
                         value={values.Login}
                         placeholder={inputs.login.placeholder}
-                        isError={errors.Login && touched.Login}
+                        isError={errors.Login && touched.Login && !isErrorAuth}
                         errorMessage={errors.Login}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
@@ -114,7 +123,7 @@ export const AutorizationForm: React.FC = () => {
                     <FormInput label={inputs.password.label}
                         value={values.Password}
                         placeholder={inputs.password.placeholder}
-                        isError={errors.Password && touched.Password}
+                        isError={errors.Password && touched.Password && !isErrorAuth}
                         errorMessage={errors.Password}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
