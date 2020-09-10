@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Formik } from "formik";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -62,6 +62,8 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
         }
     }
 
+    const [isErrorAuth, setIsErrorAuth] = useState(false);
+
     return (<Formik
         initialValues={{
             Login: '',
@@ -81,9 +83,15 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
             });
 
             let result = await response.json();
-            console.log(result)
+            console.log('response: ', result)
+            if (!result.token) {
+                setIsErrorAuth(true)
+                alert('Неверный логин или пароль !')
+            } else {
+                setIsErrorAuth(false)
+            }
             const token = result.token;
-            console.log(jwt(token))
+            console.log('jwt_decode: ', jwt(token))
             props.setUser(token)
         }}
         validationSchema={Yup.object().shape({
@@ -107,7 +115,7 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
                     <FormInput label={inputs.login.label}
                         value={values.Login}
                         placeholder={inputs.login.placeholder}
-                        isError={errors.Login && touched.Login}
+                        isError={errors.Login && touched.Login && !isErrorAuth}
                         errorMessage={errors.Login}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
@@ -115,7 +123,7 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
                     <FormInput label={inputs.password.label}
                         value={values.Password}
                         placeholder={inputs.password.placeholder}
-                        isError={errors.Password && touched.Password}
+                        isError={errors.Password && touched.Password && !isErrorAuth}
                         errorMessage={errors.Password}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />

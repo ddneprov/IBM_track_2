@@ -52,7 +52,7 @@ export const ProfileSeniority: React.FC<Props> = ({
         <div className={classes.seniority__result} >
             <div className={classes.seniority__result_value} >{seniorityResult}</div>
         </div>
-        {isManager(user.crewRole) ?
+        {isManager(user.role) ?
             <Chart pilot={user}
                 characteristic={characteristic}
                 classes={classes.seniority__chart} />

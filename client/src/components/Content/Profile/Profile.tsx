@@ -40,7 +40,7 @@ export const Profile: React.FC<Props & MapDispatchToProps> = (props) => {
       user = currentUser as ProfileFieldType
     }
 
-    const fio = [user?.firstName, user?.lastName, user?.patronymic].join(delimiterDefault)
+    const fio = [user?.firstName, user?.secondName, user?.patronymic].join(delimiterDefault)
 
 
     return (<div className={classes.profile}>
