@@ -62,7 +62,7 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
 export const requestPilots = (): ThunkType => {
     return async (dispatch, getState) => {
         let data = await managerAPI.getAllPilots()
-        debugger 
+        console.log('response: ', data) 
         dispatch(actions.setPilots(data))
     }
 }
