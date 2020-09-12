@@ -21,4 +21,6 @@ public interface UserService {
     String resetUserLogin(ArrayList<String> userLogInfo);
 
     String resetUserPassword(ArrayList<String> userLogInfo);
+
+    List<User> getAllPilots();
 }
