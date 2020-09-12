@@ -79,4 +79,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 3) Открываем браузер по адресу
 
-### `http://localhost:80`
+### `http://localhost:9000`
