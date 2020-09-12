@@ -9,6 +9,13 @@ export const getCurrentUser = (state: AppStateType) => {
 }
 
 /**
+ * Возвращает список пилотов.
+ */
+export const getPilots = (state: AppStateType) => {
+    return state.profilePage.pilots
+}
+
+/**
  * true - если пользователь авторизован.
  */
 export const isAuthorization = (state: AppStateType) => {

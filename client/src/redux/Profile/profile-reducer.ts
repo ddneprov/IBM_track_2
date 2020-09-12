@@ -1,5 +1,6 @@
+import { managerAPI } from './../../api/manager/manager-api';
 import { BaseThunkType } from './../redux-store';
-import { actions, LOGOUT, SET_USER } from './profile-actions';
+import { actions, LOGOUT, SET_USER, SET_PILOTS } from './profile-actions';
 import { ProfileFieldType } from './../../components/Content/Profile/components/type.d';
 import { config } from '../../react-app-env.d';
 import { InferActionsTypes } from '../redux-store';
@@ -7,13 +8,12 @@ import { InferActionsTypes } from '../redux-store';
 import cookie from 'react-cookies'
 import jwt from 'jwt-decode'
 
-import pilots from "../../moc/pilots.json"
-
 const defaultUserObject = {}
 
 let initialState = {
-    currentUser: config.getDebugEnable() ? pilots[0] as ProfileFieldType :
-                                            defaultUserObject
+    currentUser: config.getDebugEnable() ? (require("../../moc/pilots.json") as Array<ProfileFieldType>)[0] as ProfileFieldType :
+                                            defaultUserObject,
+    pilots: config.getDebugEnable() ? require("../../moc/pilots.json") as Array<ProfileFieldType> : new Array<ProfileFieldType>()
 }
 
 /**
@@ -36,6 +36,12 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
                 currentUser: user
             }
         }
+        case SET_PILOTS: {
+            return {
+                ...state,
+                pilots: action.pilots
+            }
+        }
         default:
             if (cookie.load("user")) {
                 let token = cookie.load("user") as string
@@ -47,6 +53,17 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
             }
             
             return initialState
+    }
+}
+
+/**
+ * Запрос на получения списка пилотов. 
+ */
+export const requestPilots = (): ThunkType => {
+    return async (dispatch, getState) => {
+        let data = await managerAPI.getAllPilots()
+        debugger 
+        dispatch(actions.setPilots(data))
     }
 }
 

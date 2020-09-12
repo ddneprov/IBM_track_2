@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { List, ListItem, Typography } from "@material-ui/core"
 import Button from '@material-ui/core/Button'
@@ -8,6 +8,10 @@ import { getSeniorityResult, getCharacteristic, getColorBySeniority } from "../.
 import { RouterMap } from "../../../base/types/RouterMap"
 import { ProfileFieldType } from "../Profile/components/type"
 import { isUserManager } from "../../../utils/Profile/userHelpers"
+import { config } from "../../../react-app-env.d"
+import { getPilots } from "../../../redux/Profile/profile-selectors"
+import { useSelector, useDispatch } from "react-redux"
+import { requestPilots } from "../../../redux/Profile/profile-reducer"
 const profileIcon_Default = require("../../../assets/profileIcon_Default.png")
 
 const seniorityResSize = '4rem'
@@ -69,9 +73,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const PilotsList: React.FC = () => {
     const classes = useStyles()
-    
+    let pilots = useSelector(getPilots)
+
+    const dispatch = useDispatch()
+
+    if (pilots.length === 0) {
+        dispatch(requestPilots())
+    }
+
     if (isUserManager()) {
-        const pilots = require("../../../moc/pilots_preprod.json")
+        if (config.getDebugEnable()) {
+            pilots = require("../../../moc/pilots_preprod.json")
+        }
 
         const getFIO = (pilot: any) => {
             debugger

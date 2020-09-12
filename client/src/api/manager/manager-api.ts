@@ -20,8 +20,7 @@ export const managerAPI = {
         const token = cookie.load("user") as string
         let headers: managerHeaders = { Authorization: `Bearer_${token}` }
 
-        return instance.post(`${this.controllerName}/${this.endpoints.getAllPilots}`,
-                            {},
+        return instance.get(`${this.controllerName}/${this.endpoints.getAllPilots}`,
                             {
                                 headers: headers
                             })
