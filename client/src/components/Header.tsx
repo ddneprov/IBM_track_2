@@ -8,6 +8,7 @@ import { RouterMap } from "../base/types/RouterMap"
 import { useSelector } from "react-redux"
 import { isAuthorization } from "../redux/Profile/profile-selectors"
 import { isUserManager } from "../utils/Profile/userHelpers"
+import { NavLink } from "react-router-dom"
 
 const profileIcon_Default = require("../assets/profileIcon_Default.png")
 const ibm_logo = require("../assets/ibm_logo.svg")
@@ -68,6 +69,8 @@ export const Header = () => {
     <div className={classes.header}>
       <div>
         <Button
+          component={NavLink}
+          to={`/${RouterMap.Auth}`}
           className={classes.header__logo}>
           <img src={ibm_logo} alt="logo" />
         </Button>
