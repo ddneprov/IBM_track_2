@@ -2,11 +2,21 @@ package com.IBMiX2.server.service.impl;
 
 import com.IBMiX2.server.domain.User;
 import com.IBMiX2.server.domain.UserRole;
+import com.IBMiX2.server.dto.AuthenticationRequestDto;
+import com.IBMiX2.server.dto.UserDto;
 import com.IBMiX2.server.reprisitory.UserRepository;
+import com.IBMiX2.server.security.jwt.JwtTokenProvider;
 import com.IBMiX2.server.service.UserService;
 import com.IBMiX2.server.ulits.StringUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -14,9 +24,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @NoArgsConstructor
@@ -24,7 +38,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private AuthenticationManager authenticationManager;
+    private JwtTokenProvider jwtTokenProvider;
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -97,5 +113,36 @@ public class UserServiceImpl implements UserService {
         user.setUserPassword(password);
         userRepository.save(user);
         return StringUtils.SUCCESS_MESSAGE;
+    }
+
+    @Override
+    public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Integer id) {
+        User user = findUserById(id);
+        if(user == null)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        UserDto result = UserDto.fromUser(user);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto){
+        try {
+            String userLogin = requestDto.getUserLogin();
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin, requestDto.getUserPassword()));
+            User user = findUserByUserLogin(userLogin);
+
+            if (user == null) {
+                throw new UsernameNotFoundException("User with username: " + userLogin + " not found");
+            }
+
+            String token = jwtTokenProvider.createToken(userLogin, user);
+            Map<Object, Object> response = new HashMap<>();
+            response.put("token", token);
+
+            return ResponseEntity.ok(response);
+        } catch (AuthenticationException e) {
+            throw new BadCredentialsException("Invalid username or password");
+        }
     }
 }

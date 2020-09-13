@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
-                .antMatchers(USER_ENDPOINT).permitAll() // TODO: только для пользователей поменять
+                .antMatchers(USER_ENDPOINT).hasRole("USER")
                 .antMatchers(MANAGER_ENDPOINT).hasRole("MANAGER")
                 .anyRequest().authenticated()
                 .and()
