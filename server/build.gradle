@@ -30,6 +30,10 @@ dependencies {
 	}
 }
 
+bootJar{
+	classifier('boot')
+}
+
 test {
 	useJUnitPlatform()
 }

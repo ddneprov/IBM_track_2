@@ -1,0 +1,20 @@
+# сначала нужно создать имедж командой(находясь в папке с Dockerfile):    docker build . -t app
+version: '3.8'
+
+services:
+  app:
+    image: app
+    container_name: app
+    links:
+      - "db:db"
+    ports:
+      - '8085:8085'
+    restart: always
+
+  db:
+    image: mysql:8.0.21
+    volumes:
+      - /Users/admin/dbdata/:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: IBMiX2
