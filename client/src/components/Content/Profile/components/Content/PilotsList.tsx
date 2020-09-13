@@ -3,16 +3,15 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { List, ListItem, Typography } from "@material-ui/core"
 import Button from '@material-ui/core/Button'
 import { NavLink } from 'react-router-dom'
-import { IBM_Default_Color } from "../../../base/types/ColorBase"
-import { getSeniorityResult, getCharacteristic, getColorBySeniority } from "../../../utils/Profile/characteristic"
-import { RouterMap } from "../../../base/types/RouterMap"
-import { ProfileFieldType } from "../Profile/components/type"
-import { isUserManager } from "../../../utils/Profile/userHelpers"
-import { config } from "../../../react-app-env.d"
-import { getPilots } from "../../../redux/Profile/profile-selectors"
+import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
+import { getSeniorityResult, getCharacteristic, getColorBySeniority } from "../../../../../utils/Profile/characteristic"
+import { RouterMap } from "../../../../../base/types/RouterMap"
+import { ProfileFieldType } from "../type"
+import { isUserManager } from "../../../../../utils/Profile/userHelpers"
+import { getPilots } from "../../../../../redux/Profile/profile-selectors"
 import { useSelector, useDispatch } from "react-redux"
-import { requestPilots } from "../../../redux/Profile/profile-reducer"
-const profileIcon_Default = require("../../../assets/profileIcon_Default.png")
+import { requestPilots } from "../../../../../redux/Profile/profile-reducer"
+const profileIcon_Default = require("../../../../../assets/profileIcon_Default.png")
 
 const seniorityResSize = '4rem'
 
@@ -26,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: theme.spacing(2),
             backgroundColor: IBM_Default_Color.white,
             borderRadius: '20px',
-            boxShadow: '0px 4px 20px 5px rgba(0, 0, 0, 0.25)',
             overflow: 'auto',
             '&::-webkit-scrollbar': {
                 width: '1em'
@@ -84,10 +82,6 @@ export const PilotsList: React.FC = () => {
     })
 
     if (isUserManager() && pilots.length !== 0) {
-        if (config.getDebugEnable()) {
-            pilots = require("../../../moc/pilots_preprod.json")
-        }
-
         const getFIO = (pilot: any) => {
             const delimiterDefault = " "
             return [pilot.firstName,

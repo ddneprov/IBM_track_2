@@ -2,7 +2,7 @@ import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 import { Route, Switch } from "react-router-dom";
 import { RouterMap } from "../../base/types/RouterMap";
-import { PilotsList } from "./PilotsList/PilotsList";
+import { PilotsList } from "./Profile/components/Content/PilotsList";
 import { ProfileContainer } from "./Profile/ProfileContainer";
 import { AutorizationContainter } from "./Autorization/AutorizationContainer";
 

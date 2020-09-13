@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,6 +25,10 @@ export const ProfileField : React.FC<Props> = ({
 }) => {
     
     const classes = useStyles();
+
+    useEffect(() => {
+        setFieldValue(value)
+    }, [value])
 
     const [fieldValue, setFieldValue] = useState(value)
     const onChangeFieldValue = (event: React.ChangeEvent<HTMLInputElement>) => {

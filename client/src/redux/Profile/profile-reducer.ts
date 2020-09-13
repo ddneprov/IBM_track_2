@@ -14,7 +14,7 @@ const defaultUserObject = {}
 let initialState = {
     currentUser: config.getDebugEnable() ? (require("../../moc/pilots.json") as Array<ProfileFieldType>)[0] as ProfileFieldType :
                                             defaultUserObject,
-    pilots: config.getDebugEnable() ? require("../../moc/pilots.json") as Array<ProfileFieldType> : new Array<ProfileFieldType>()
+    pilots: config.getDebugEnable() ? require("../../moc/pilots_preprod.json") as Array<ProfileFieldType> : new Array<ProfileFieldType>()
 }
 
 /**

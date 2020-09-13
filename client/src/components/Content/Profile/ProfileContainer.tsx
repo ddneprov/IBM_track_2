@@ -2,9 +2,8 @@ import React from 'react'
 import { withRouter, RouteComponentProps, Redirect } from "react-router-dom"
 import { compose } from "redux"
 import { connect } from 'react-redux';
-import { Profile, MapDispatchToProps } from './Profile';
+import { Profile, MapDispatchToProps, currentUserIdDefault } from './Profile';
 import { AppStateType } from '../../../redux/redux-store'
-import { ProfileFieldType } from './components/type.d';
 import { logOut } from '../../../redux/Profile/profile-actions'
 import { RouterMap } from '../../../base/types/RouterMap';
 
@@ -24,21 +23,16 @@ type Props = ReturnType<typeof mapStateToProps> &
 
 class ProfileClassComponent extends React.Component<Props> {
     render() {
-        const userId = this.props.match.params.userId
+        const userId = Number(this.props.match.params.userId)
 
-        if (userId) {
-            const pilots = require("../../../moc/pilots_preprod.json") as Array<ProfileFieldType>
-            let user = pilots.find((pilot, index) => index.toString() === userId);
-            if (user) {
-                return <Profile user={user}
-                    logOut={this.props.logOut} />
-            }
-        } else if (Object.keys(this.props.currentUser).length > 0) {
-            return <Profile user={this.props.currentUser as ProfileFieldType}
-                logOut={this.props.logOut} />
+        // Если пользователь авторизован.
+        if (Object.keys(this.props.currentUser).length > 0) {
+            return <Profile userId={userId ? userId : 
+                                             currentUserIdDefault}
+                            logOut={this.props.logOut} />
+        } else {
+            return <Redirect to={`/${RouterMap.Auth}`} />
         }
-        
-        return <Redirect to={`/${RouterMap.Auth}`} />
     }
 };
 

@@ -42,7 +42,6 @@ type Props = {
 export const ProfileSeniority: React.FC<Props> = ({
     user
 }) => {
-
     const classes = useStyles()
     const characteristic = getCharacteristic(user)
 
@@ -53,7 +52,7 @@ export const ProfileSeniority: React.FC<Props> = ({
             <div className={classes.seniority__result_value} >{seniorityResult}</div>
         </div>
         {isUserManager() ?
-            <Chart pilot={user}
+            <Chart
                 characteristic={characteristic}
                 classes={classes.seniority__chart} />
             : <></>}
