@@ -32,7 +32,23 @@ const useStyles = makeStyles((theme: Theme) =>
         seniority__chart: {
             width: '20rem !important',
             overflowX: 'auto',
+            overflowY: 'hidden',
             marginTop: theme.spacing(9),
+            '&::-webkit-scrollbar': {
+                width: '1em'
+            },
+            '&::-webkit-scrollbar-track': {
+                borderRadius: '30px',
+                boxShadow: 'inset 0 0 6px rgba(0, 0, 0, 0.3)',
+                backgroundColor: IBM_Default_Color.white
+            },
+            '&::-webkit-scrollbar-thumb': {
+                borderRadius: '50px',
+                backgroundColor: IBM_Default_Color.blue,
+                backgroundImage: `-webkit-gradient(linear, 0 0, 0 100%,
+                              color-stop(.5, rgba(255, 255, 255, .2)),
+                                      color-stop(.5, transparent), to(transparent))`
+            }
         }
     })
 );
