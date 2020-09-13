@@ -7,6 +7,7 @@ import { InferActionsTypes } from '../redux-store';
 
 import cookie from 'react-cookies'
 import jwt from 'jwt-decode'
+import { isError } from 'util';
 
 const defaultUserObject = {}
 
@@ -62,8 +63,11 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
 export const requestPilots = (): ThunkType => {
     return async (dispatch, getState) => {
         let data = await managerAPI.getAllPilots()
-        console.log('response: ', data) 
-        dispatch(actions.setPilots(data))
+        console.log('response: ', data)
+
+        if (!isError(data)) {
+            dispatch(actions.setPilots(data))
+        }
     }
 }
 

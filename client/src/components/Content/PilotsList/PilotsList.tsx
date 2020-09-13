@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { List, ListItem, Typography } from "@material-ui/core"
 import Button from '@material-ui/core/Button'
@@ -77,17 +77,18 @@ export const PilotsList: React.FC = () => {
 
     const dispatch = useDispatch()
 
-    if (pilots.length === 0) {
-        dispatch(requestPilots())
-    }
+    useEffect(() => {
+        if (pilots.length === 0) {
+            dispatch(requestPilots())
+        }
+    })
 
-    if (isUserManager()) {
+    if (isUserManager() && pilots.length !== 0) {
         if (config.getDebugEnable()) {
             pilots = require("../../../moc/pilots_preprod.json")
         }
 
         const getFIO = (pilot: any) => {
-            debugger
             const delimiterDefault = " "
             return [pilot.firstName,
             pilot.secondName[0] + '.',
