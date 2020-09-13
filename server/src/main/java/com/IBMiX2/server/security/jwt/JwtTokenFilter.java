@@ -30,7 +30,6 @@ public class JwtTokenFilter extends GenericFilterBean {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        //filterChain.doFilter(req, res);
 
 
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);

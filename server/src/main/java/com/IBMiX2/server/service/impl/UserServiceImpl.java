@@ -39,8 +39,6 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
-    private AuthenticationManager authenticationManager;
-    private JwtTokenProvider jwtTokenProvider;
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -123,26 +121,5 @@ public class UserServiceImpl implements UserService {
 
         UserDto result = UserDto.fromUser(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
-    }
-
-    @Override
-    public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto){
-        try {
-            String userLogin = requestDto.getUserLogin();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin, requestDto.getUserPassword()));
-            User user = findUserByUserLogin(userLogin);
-
-            if (user == null) {
-                throw new UsernameNotFoundException("User with username: " + userLogin + " not found");
-            }
-
-            String token = jwtTokenProvider.createToken(userLogin, user);
-            Map<Object, Object> response = new HashMap<>();
-            response.put("token", token);
-
-            return ResponseEntity.ok(response);
-        } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username or password");
-        }
     }
 }

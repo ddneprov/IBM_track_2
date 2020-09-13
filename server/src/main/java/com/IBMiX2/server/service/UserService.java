@@ -30,6 +30,4 @@ public interface UserService {
     List<User> getAllPilots();
 
     ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Integer id);
-
-    ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto);
 }
