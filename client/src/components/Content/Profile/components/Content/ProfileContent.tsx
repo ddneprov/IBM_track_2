@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile__content: {
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'space-evenly',
       flexWrap: 'wrap',
       marginTop: theme.spacing(2),
     }

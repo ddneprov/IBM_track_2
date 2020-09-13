@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         pilotsList: {
             display: 'flex',
             width: '95%',
-            height: '35rem',
+            height: '25rem',
             flexDirection: 'column',
             margin: theme.spacing(2),
             backgroundColor: IBM_Default_Color.white,

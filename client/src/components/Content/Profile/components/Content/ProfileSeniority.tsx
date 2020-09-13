@@ -30,6 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: '2rem'
         },
         seniority__chart: {
+            width: '20rem !important',
+            overflowX: 'auto',
             marginTop: theme.spacing(9),
         }
     })
