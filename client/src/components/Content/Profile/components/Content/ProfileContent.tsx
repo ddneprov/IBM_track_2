@@ -5,6 +5,7 @@ import { ProfileInfo } from "./ProfileInfo";
 import { ProfileFieldType } from "../type";
 import { ProfileSeniority } from "./ProfileSeniority";
 import { PilotsList } from "./PilotsList";
+import { isManager } from "../../../../../utils/Profile/userHelpers";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,10 +32,9 @@ export const ProfileContent: React.FC<Props> = ({
     seniority: 'Seniority',
     profileInfo: 'Profile info'
   }
-  
+
   return (<div className={classes.profile__content}>
-    <ProfileTabFrame title={titleTabs.pilotsList}
-      Component={<PilotsList />} />
+    {isManager(user.role) ? <ProfileTabFrame title={titleTabs.pilotsList} Component={<PilotsList />} /> : <></>}
     <ProfileTabFrame title={titleTabs.seniority}
       Component={<ProfileSeniority user={user} />} />
     <ProfileTabFrame title={titleTabs.profileInfo}
