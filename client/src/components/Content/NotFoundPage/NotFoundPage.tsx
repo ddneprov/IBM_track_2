@@ -1,8 +1,8 @@
 import React from "react"
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
+import { makeStyles, createStyles } from "@material-ui/core/styles"
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(
     createStyles({
       error__container: {
         textAlign: "center",
