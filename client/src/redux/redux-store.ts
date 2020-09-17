@@ -1,6 +1,7 @@
 import { profileReducer } from './Profile/profile-reducer';
 import { combineReducers, createStore, Action, applyMiddleware} from "redux";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
+import { compose } from 'redux';
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

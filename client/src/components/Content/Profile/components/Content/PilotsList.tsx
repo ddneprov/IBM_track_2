@@ -85,7 +85,7 @@ export const PilotsList: React.FC = () => {
         const getFIO = (pilot: any) => {
             const delimiterDefault = " "
             return [pilot.firstName,
-            pilot.secondName[0] + '.',
+            pilot.lastName[0] + '.',
             pilot.patronymic[0] + '.'].join(delimiterDefault)
         }
 

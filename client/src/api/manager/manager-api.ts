@@ -1,5 +1,4 @@
-﻿import { managerHeaders } from './manager-type.d';
-import { instance } from '../api';
+﻿import { instance } from '../api';
 import cookie from 'react-cookies';
 
 /**
@@ -18,13 +17,9 @@ export const managerAPI = {
     getAllPilots() {
         cookie.load("user")
         const token = cookie.load("user") as string
-        let headers: managerHeaders = { Authorization: `Bearer_${token}` }
 
-        return instance.get(`${this.controllerName}/${this.endpoints.getAllPilots}`,
-                            {
-                                headers: headers
-                            })
-                        .then(res => res.data)
-                        .catch(error => error)
+        return instance.post(`${this.controllerName}/${this.endpoints.getAllPilots}?Authorization=Bearer_${token}`)
+            .then(res => res.data)
+            .catch(error => error)
     }
 }

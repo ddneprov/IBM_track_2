@@ -1,7 +1,7 @@
 [
     {
         "firstName": "Иванов",
-        "secondName": "Иван",
+        "lastName": "Иван",
         "patronymic": "Иванович",
         "role": "КВС-инстр", 
         "standingFromDate": "2018-05-11",

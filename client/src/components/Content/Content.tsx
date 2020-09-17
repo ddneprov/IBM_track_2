@@ -5,6 +5,7 @@ import { RouterMap } from "../../base/types/RouterMap";
 import { PilotsList } from "./Profile/components/Content/PilotsList";
 import { ProfileContainer } from "./Profile/ProfileContainer";
 import { AutorizationContainter } from "./Autorization/AutorizationContainer";
+import { NotFoundPage } from "./NotFoundPage/NotFoundPage";
 
 const useStyles = makeStyles(
   createStyles({
@@ -25,7 +26,7 @@ export const Content: React.FC = () => {
       <Route exact path={`/${RouterMap.Profile}/:userId`} render={() => <ProfileContainer />} />
       <Route exact path={`/${RouterMap.Auth}`} render={() => <AutorizationContainter />} />
       <Route path='*'
-          render={() => <div>404 NOT FOUND</div>} />
+          render={() => <NotFoundPage />} />
     </Switch>
   </div>)
 }

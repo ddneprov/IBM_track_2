@@ -48,7 +48,7 @@ export const Profile: React.FC<Props & MapDispatchToProps> = (props) => {
       user = pilots[props.userId]
     }
 
-    const fio = [user?.firstName, user?.secondName, user?.patronymic].join(delimiterDefault)
+    const fio = [user?.firstName, user?.lastName, user?.patronymic].join(delimiterDefault)
 
     return (<div className={classes.profile}>
       {currentUser === user ? <ProfileHeader fio={fio}
