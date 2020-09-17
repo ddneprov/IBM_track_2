@@ -1,8 +1,8 @@
+import { config } from './../../react-app-env.d';
 import { managerAPI } from './../../api/manager/manager-api';
 import { BaseThunkType } from './../redux-store';
 import { actions, LOGOUT, SET_USER, SET_PILOTS } from './profile-actions';
 import { ProfileFieldType } from './../../components/Content/Profile/components/type.d';
-import { config } from '../../react-app-env.d';
 import { InferActionsTypes } from '../redux-store';
 
 import cookie from 'react-cookies'
@@ -63,7 +63,10 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
 export const requestPilots = (): ThunkType => {
     return async (dispatch, getState) => {
         let data = await managerAPI.getAllPilots()
-        console.log('response: ', data)
+
+        if (config.getDebugEnable()) {
+            console.log('response: ', data)
+        }
 
         if (!isError(data)) {
             dispatch(actions.setPilots(data))
