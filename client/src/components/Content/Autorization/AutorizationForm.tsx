@@ -116,6 +116,7 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
                         value={values.Login}
                         placeholder={inputs.login.placeholder}
                         isError={errors.Login && touched.Login && !isErrorAuth}
+                        inputType="text"
                         errorMessage={errors.Login}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
@@ -124,6 +125,7 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
                         value={values.Password}
                         placeholder={inputs.password.placeholder}
                         isError={errors.Password && touched.Password && !isErrorAuth}
+                        inputType="password"
                         errorMessage={errors.Password}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
