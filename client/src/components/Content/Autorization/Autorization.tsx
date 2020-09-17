@@ -49,9 +49,8 @@ export type MapStateToProps = {
 export const Autorization: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
   const classes = useStyles()
   const isAuth = useSelector(isAuthorization)
-  if (isAuth) {
-    return <Redirect to={isManager(props.currentUser.role) ? `/${RouterMap.PilotsList}` : 
-                                                             `/${RouterMap.Profile}`}/>
+  if (isAuth && isManager(props.currentUser.role)) {
+    return <Redirect to={`/${RouterMap.Profile}`}/>
   }
 
   return (

@@ -7,7 +7,6 @@ import { DropRightMenu } from "./DropRightMenu"
 import { RouterMap } from "../../base/types/RouterMap"
 import { useSelector } from "react-redux"
 import { isAuthorization } from "../../redux/Profile/profile-selectors"
-import { isUserManager } from "../../utils/Profile/userHelpers"
 import { NavLink } from "react-router-dom"
 
 const profileIcon_Default = require("../../assets/profileIcon_Default.png")
@@ -48,13 +47,6 @@ export const Header:  React.FC<MapDispatchToProps> = (props) => {
     { text: "Мой профиль", pathURL: RouterMap.Profile },
     //{ text: "Выйти", pathURL: RouterMap.Auth } TODO: Вернуть, когда будет исправлена логика выхода из аккаунта
   ]
-
-  if (isUserManager()) {
-    pages.push({
-      text: 'Список пилотов',
-      pathURL: RouterMap.PilotsList
-    })
-  }
 
   const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
 
