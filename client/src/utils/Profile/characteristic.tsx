@@ -5,7 +5,13 @@ import { Seniority_Color } from "../../base/types/ColorBase"
 /**
  * Максимальное значение характеристики
  */
-const maxCharacterValue = 5
+const maxCharacterValue: number = 5
+
+/**
+ * Точность вычислений показателей сеньёрити
+ */
+const accuracy: number = 1
+
 
 /**
  * Возвращает опыт работы.
@@ -27,7 +33,7 @@ const getDiffDate = (dateFrom: string, dateTo: number) => {
  * @param character значение характеристики.
  */
 const convertCharacteristic = (character: number) => character >= maxCharacterValue ? maxCharacterValue :
-                                                                                      character
+                                                                                      Number(character.toFixed(accuracy))
 
 /**
  * Возвращает характеристики пилота.
@@ -67,7 +73,7 @@ export const getSeniorityResult = (charapters: Array<CharapterSeniority>) => {
         result += charapter.star
     })
 
-    return convertCharacteristic(result / charapters.length).toFixed(1)
+    return convertCharacteristic(result / charapters.length)
 }
 
 /**
