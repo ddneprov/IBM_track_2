@@ -2,10 +2,10 @@ import React from "react";
 import { CookiesProvider } from 'react-cookie';
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { BrowserRouter } from "react-router-dom";
-import { Header } from './components/Header';
 import { Content } from "./components/Content/Content";
 import { Provider } from "react-redux";
 import { store } from "./redux/redux-store";
+import { HeaderContainer } from "./components/Header/HeaderContainer";
 
 const useStyles = makeStyles(
   createStyles({
@@ -24,7 +24,7 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Provider store={store}>
           <div className={classes.app}>
-            <Header />
+            <HeaderContainer />
             <Content />
           </div>
         </Provider>

@@ -1,17 +1,17 @@
 import React, { useState } from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 import { Theme, IconButton, Button } from "@material-ui/core"
-import { IBM_Default_Color } from "../base/types/ColorBase"
-import { NavigationItemInfo } from "../common/components/type"
-import { DropRightMenu } from "../common/components/DropRightMenu"
-import { RouterMap } from "../base/types/RouterMap"
+import { IBM_Default_Color } from "../../base/types/ColorBase"
+import { NavigationItemInfo } from "../../common/components/type"
+import { DropRightMenu } from "./DropRightMenu"
+import { RouterMap } from "../../base/types/RouterMap"
 import { useSelector } from "react-redux"
-import { isAuthorization } from "../redux/Profile/profile-selectors"
-import { isUserManager } from "../utils/Profile/userHelpers"
+import { isAuthorization } from "../../redux/Profile/profile-selectors"
+import { isUserManager } from "../../utils/Profile/userHelpers"
 import { NavLink } from "react-router-dom"
 
-const profileIcon_Default = require("../assets/profileIcon_Default.png")
-const ibm_logo = require("../assets/ibm_logo.svg")
+const profileIcon_Default = require("../../assets/profileIcon_Default.png")
+const ibm_logo = require("../../assets/ibm_logo.svg")
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,10 +32,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+export type MapDispatchToProps = {
+  logOut: () => any
+}
+
 /**
  * Заголовок страницы
  */
-export const Header = () => {
+export const Header:  React.FC<MapDispatchToProps> = (props) => {
   const classes = useStyles()
 
   const isAuth = useSelector(isAuthorization)
@@ -64,6 +68,11 @@ export const Header = () => {
 
     setState(isOpen);
   };
+
+  const logOut = () => {
+    props.logOut()
+    setState(false);
+  }
 
   return (
     <div className={classes.header}>
@@ -94,6 +103,7 @@ export const Header = () => {
             <React.Fragment>
               <DropRightMenu pages={pages}
                 isOpen={isOpen}
+                logOut={logOut}
                 toggleDropRightMenu={toggleDrawer} />
             </React.Fragment>
           </> : <></>
