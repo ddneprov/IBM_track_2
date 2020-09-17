@@ -1,7 +1,7 @@
 ﻿import React from 'react'
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles'
-import { IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
+import { IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText, Button } from '@material-ui/core'
+import { Inbox, Menu } from '@material-ui/icons'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import { NavLink } from 'react-router-dom'
@@ -68,7 +68,7 @@ export const DropRightMenu: React.FC<Props> = ({
             onClose={toggleDropRightMenu(false)}>
             <div>
                 <div className={classes.drawerHeader}>
-                    <IconButton style={{color: IBM_Default_Color.white}} onClick={toggleDropRightMenu(false)}>
+                    <IconButton style={{ color: IBM_Default_Color.white }} onClick={toggleDropRightMenu(false)}>
                         {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
@@ -78,16 +78,27 @@ export const DropRightMenu: React.FC<Props> = ({
                 <List>
                     {pages.map(x => (
                         <ListItem className={classes.drawerListItem}
-                                  component={NavLink}
-                                  key={x.text}
-                                  onClick={toggleDropRightMenu(false)}
-                                  to={x.pathURL}>
+                            component={NavLink}
+                            key={x.text}
+                            onClick={toggleDropRightMenu(false)}
+                            to={x.pathURL}>
                             <ListItemIcon>
-                                <MenuIcon />
+                                <Menu />
                             </ListItemIcon>
                             <ListItemText primary={x.text} />
                         </ListItem>
                     ))}
+                </List>
+                <Divider />
+                <List>
+                    <ListItem className={classes.drawerListItem}
+                        component={Button}
+                        onClick={toggleDropRightMenu(false)}>
+                        <ListItemIcon>
+                            <Inbox />
+                        </ListItemIcon>
+                        <ListItemText primary={"Выйти"} />
+                    </ListItem>
                 </List>
             </div>
 
