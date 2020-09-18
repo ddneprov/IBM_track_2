@@ -48,7 +48,7 @@ public class JwtTokenProvider {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("id", user.getUserId());
         claims.put("firstName", user.getFirstName());
-        claims.put("secondName", user.getLastName());
+        claims.put("lastName", user.getLastName());
         claims.put("patronymic", user.getPatronymic());
         claims.put("crewRole", user.getCrewRole());
         claims.put("standingFromDate", user.getStandingFromDate().toString());
@@ -79,7 +79,7 @@ public class JwtTokenProvider {
     }
 
     public String resolveToken(HttpServletRequest req) {
-        String bearerToken = req.getHeader("Authorization");
+        String bearerToken = req.getParameter("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer_")) {
             return bearerToken.substring(7, bearerToken.length());
         }

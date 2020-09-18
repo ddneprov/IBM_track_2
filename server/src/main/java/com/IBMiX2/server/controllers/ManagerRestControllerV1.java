@@ -27,7 +27,7 @@ public class ManagerRestControllerV1 {
         return userService.getAllUsers();
     }
 
-    @RequestMapping(value = "getAllPilots", method = RequestMethod.GET)
+    @RequestMapping(value = "getAllPilots", method = RequestMethod.POST)
     public List<User> getAllPilot(){
         return userService.getAllPilots();
     }
