@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase";
 import { IBM_Style } from "../../../../../base/types/StyleBase";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = (widthFrame: string) => makeStyles((theme: Theme) =>
     createStyles({
         tab__item: {
             display: 'flex',
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexShrink: 1,
             marginBottom: theme.spacing(10),
             paddingBottom: theme.spacing(5),
-            width: '35rem',
+            width: widthFrame,//'30rem',
             backgroundColor: IBM_Default_Color.white,
             borderRadius: IBM_Style.borderRadius
         },
@@ -26,19 +26,21 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: 'bold'
         }
     })
-);
+)();
 
 
 interface Props {
     title: string, 
+    width: string,
     Component: JSX.Element
 }
 
 export const ProfileTabFrame: React.FC<Props> = ({
     title,
+    width,
     Component
 }) => {
-    const classes = useStyles()
+    const classes = useStyles(width)
 
     return (<div className={classes.tab__item}>
             <Typography variant='h5'

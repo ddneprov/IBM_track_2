@@ -37,10 +37,12 @@ export const ProfileContent: React.FC<Props> = ({
   }
 
   return (<div className={classes.profile__content}>
-    {isManager(currentUser.role) ? <ProfileTabFrame title={titleTabs.pilotsList} Component={<PilotsListContainer />} /> : <></>}
+    {isManager(currentUser.role) ? <ProfileTabFrame title={titleTabs.pilotsList} width='30rem' Component={<PilotsListContainer />} /> : <></>}
     <ProfileTabFrame title={titleTabs.seniority}
+      width='20rem'
       Component={<ProfileSeniority user={user} />} />
     <ProfileTabFrame title={titleTabs.profileInfo}
+      width='30rem'
       Component={<ProfileInfo user={user} />} />
   </div>)
 }
