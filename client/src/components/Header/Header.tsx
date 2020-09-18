@@ -1,16 +1,16 @@
 import React, { useState } from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 import { Theme, IconButton, Button } from "@material-ui/core"
-import { IBM_Default_Color } from "../base/types/ColorBase"
-import { NavigationItemInfo } from "../common/components/type"
-import { DropRightMenu } from "../common/components/DropRightMenu"
-import { RouterMap } from "../base/types/RouterMap"
+import { IBM_Default_Color } from "../../base/types/ColorBase"
+import { NavigationItemInfo } from "../../common/components/type"
+import { DropRightMenu } from "./DropRightMenu"
+import { RouterMap } from "../../base/types/RouterMap"
 import { useSelector } from "react-redux"
-import { isAuthorization } from "../redux/Profile/profile-selectors"
-import { isUserManager } from "../utils/Profile/userHelpers"
+import { isAuthorization } from "../../redux/Profile/profile-selectors"
+import { NavLink } from "react-router-dom"
 
-const profileIcon_Default = require("../assets/profileIcon_Default.png")
-const ibm_logo = require("../assets/ibm_logo.svg")
+const profileIcon_Default = require("../../assets/profileIcon_Default.png")
+const ibm_logo = require("../../assets/ibm_logo.svg")
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,10 +31,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+export type MapDispatchToProps = {
+  logOut: () => any
+}
+
 /**
  * Заголовок страницы
  */
-export const Header = () => {
+export const Header:  React.FC<MapDispatchToProps> = (props) => {
   const classes = useStyles()
 
   const isAuth = useSelector(isAuthorization)
@@ -43,13 +47,6 @@ export const Header = () => {
     { text: "Мой профиль", pathURL: RouterMap.Profile },
     //{ text: "Выйти", pathURL: RouterMap.Auth } TODO: Вернуть, когда будет исправлена логика выхода из аккаунта
   ]
-
-  if (isUserManager()) {
-    pages.push({
-      text: 'Список пилотов',
-      pathURL: RouterMap.PilotsList
-    })
-  }
 
   const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
 
@@ -64,10 +61,17 @@ export const Header = () => {
     setState(isOpen);
   };
 
+  const logOut = () => {
+    props.logOut()
+    setState(false);
+  }
+
   return (
     <div className={classes.header}>
       <div>
         <Button
+          component={NavLink}
+          to={`/${RouterMap.Auth}`}
           className={classes.header__logo}>
           <img src={ibm_logo} alt="logo" />
         </Button>
@@ -91,6 +95,7 @@ export const Header = () => {
             <React.Fragment>
               <DropRightMenu pages={pages}
                 isOpen={isOpen}
+                logOut={logOut}
                 toggleDropRightMenu={toggleDrawer} />
             </React.Fragment>
           </> : <></>

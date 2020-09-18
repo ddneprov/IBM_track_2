@@ -5,6 +5,8 @@ html, body, #root {
   }
 
 body {
+
+
     background-image: url('./assets/bg.jpg');
     background-size: 100%;
     background-color: #E5E5E5;

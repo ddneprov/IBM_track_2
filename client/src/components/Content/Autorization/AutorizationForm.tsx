@@ -5,11 +5,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import * as Yup from "yup";
 import jwt from 'jwt-decode'
 import { authAPI } from "../../../api/auth/auth-api";
-import { UserAuth } from "../../../api/auth/auth-type.d";
 import { IFormInput } from "./type";
 import { FormInput } from "./FormInput";
 import { Button } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
+import { config } from "../../../react-app-env.d";
 
 export interface IFormState {
     login: IFormInput,
@@ -70,28 +70,28 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
             Password: ''
         }}
         onSubmit={async (values) => {
-            //const response = await authAPI.logIn(new UserAuth(values.Login, values.Password));
-            let response = await fetch('http://130.193.38.154:1337/api/v1/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify({
-                    'userLogin': values.Login,
-                    'userPassword': values.Password
-                })
+            const response = await authAPI.logIn({
+                userLogin: values.Login, 
+                userPassword: values.Password
             });
+            
+            if (config.getDebugEnable()) {
+                console.log('response: ', response)
+            }
 
-            let result = await response.json();
-            console.log('response: ', result)
-            if (!result.token) {
+            if (!response.token) {
                 setIsErrorAuth(true)
                 alert('Неверный логин или пароль !')
             } else {
                 setIsErrorAuth(false)
             }
-            const token = result.token;
-            console.log('jwt_decode: ', jwt(token))
+
+            const token = response.token;
+
+            if (config.getDebugEnable()) {
+                console.log('jwt_decode: ', jwt(token))
+            }
+
             props.setUser(token)
         }}
         validationSchema={Yup.object().shape({
@@ -116,6 +116,7 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
                         value={values.Login}
                         placeholder={inputs.login.placeholder}
                         isError={errors.Login && touched.Login && !isErrorAuth}
+                        inputType="text"
                         errorMessage={errors.Login}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />
@@ -124,6 +125,7 @@ export const AutorizationForm: React.FC<MapDispatchToProps> = (props) => {
                         value={values.Password}
                         placeholder={inputs.password.placeholder}
                         isError={errors.Password && touched.Password && !isErrorAuth}
+                        inputType="password"
                         errorMessage={errors.Password}
                         handleBlur={handleBlur}
                         handleChange={handleChange} />

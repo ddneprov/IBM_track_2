@@ -5,7 +5,13 @@ import { Seniority_Color } from "../../base/types/ColorBase"
 /**
  * Максимальное значение характеристики
  */
-const maxCharacterValue = 5
+const maxCharacterValue: number = 5
+
+/**
+ * Точность вычислений показателей сеньёрити
+ */
+const accuracy: number = 1
+
 
 /**
  * Возвращает опыт работы.
@@ -27,7 +33,7 @@ const getDiffDate = (dateFrom: string, dateTo: number) => {
  * @param character значение характеристики.
  */
 const convertCharacteristic = (character: number) => character >= maxCharacterValue ? maxCharacterValue :
-                                                                                      character
+                                                                                      Number(character.toFixed(accuracy))
 
 /**
  * Возвращает характеристики пилота.
@@ -39,19 +45,19 @@ export const getCharacteristic = (pilot: ProfileFieldType) => {
 
     return [
         {
-            name: 'Experience', star: convertCharacteristic(expYear),
+            name: 'Experience', star: convertCharacteristic(expYear), // Опыт работы
         },
         {
-            name: 'Length', star: convertCharacteristic(length)
+            name: 'Length', star: convertCharacteristic(length) // Опыт работы в текущей должности
         },
         {
-            name: 'Clearance level', star: convertCharacteristic(expYear + length)
+            name: 'Clearance level', star: convertCharacteristic(expYear + length) // Уровень доступа
         },
         {
-            name: 'Quality', star: convertCharacteristic(pilot.reliabilityIndex)
+            name: 'Quality', star: convertCharacteristic(pilot.reliabilityIndex) // Качество выполнение своих обязаностей
         },
         {
-            name: 'R/P', star: convertCharacteristic(pilot.rewardsAndPunishments)
+            name: 'R/P', star: convertCharacteristic(pilot.rewardsAndPunishments) // Разность между кол-вом удовл. заявок и не удовл.
         }
     ] as Array<CharapterSeniority>
 }
@@ -67,7 +73,7 @@ export const getSeniorityResult = (charapters: Array<CharapterSeniority>) => {
         result += charapter.star
     })
 
-    return convertCharacteristic(result / charapters.length).toFixed(1)
+    return convertCharacteristic(result / charapters.length)
 }
 
 /**

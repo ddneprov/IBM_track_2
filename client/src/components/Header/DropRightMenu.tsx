@@ -1,11 +1,11 @@
 ﻿import React from 'react'
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles'
-import { IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
+import { IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText, Button } from '@material-ui/core'
+import { Inbox, Menu } from '@material-ui/icons'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import { NavLink } from 'react-router-dom'
-import { NavigationItemInfo } from './type'
+import { NavigationItemInfo } from '../../common/components/type'
 import { IBM_Default_Color } from '../../base/types/ColorBase'
 
 const drawerWidth = 240;
@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme: Theme) =>
 type Props = {
     pages: Array<NavigationItemInfo>,
     isOpen: boolean,
-    toggleDropRightMenu: (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void
+    toggleDropRightMenu: (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void,
+    logOut: () => any
 }
 
 /**
@@ -48,11 +49,7 @@ type Props = {
  * @param pages Список страниц.
  * @param isOpen Задает значение, показывающее, открыто ли выподающее меню.
  */
-export const DropRightMenu: React.FC<Props> = ({
-    pages,
-    isOpen,
-    toggleDropRightMenu
-}) => {
+export const DropRightMenu: React.FC<Props> = (props) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -61,14 +58,14 @@ export const DropRightMenu: React.FC<Props> = ({
             className={classes.drawer}
             variant="persistent"
             anchor="right"
-            open={isOpen}
+            open={props.isOpen}
             classes={{
                 paper: classes.drawerPaper,
             }}
-            onClose={toggleDropRightMenu(false)}>
+            onClose={props.toggleDropRightMenu(false)}>
             <div>
                 <div className={classes.drawerHeader}>
-                    <IconButton style={{color: IBM_Default_Color.white}} onClick={toggleDropRightMenu(false)}>
+                    <IconButton style={{ color: IBM_Default_Color.white }} onClick={props.toggleDropRightMenu(false)}>
                         {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
@@ -76,18 +73,29 @@ export const DropRightMenu: React.FC<Props> = ({
                 <Divider />
 
                 <List>
-                    {pages.map(x => (
+                    {props.pages.map(x => (
                         <ListItem className={classes.drawerListItem}
-                                  component={NavLink}
-                                  key={x.text}
-                                  onClick={toggleDropRightMenu(false)}
-                                  to={x.pathURL}>
+                            component={NavLink}
+                            key={x.text}
+                            onClick={props.toggleDropRightMenu(false)}
+                            to={x.pathURL}>
                             <ListItemIcon>
-                                <MenuIcon />
+                                <Menu />
                             </ListItemIcon>
                             <ListItemText primary={x.text} />
                         </ListItem>
                     ))}
+                </List>
+                <Divider />
+                <List>
+                    <ListItem className={classes.drawerListItem}
+                        component={Button}
+                        onClick={props.logOut}>
+                        <ListItemIcon>
+                            <Inbox />
+                        </ListItemIcon>
+                        <ListItemText primary={"Выйти"} />
+                    </ListItem>
                 </List>
             </div>
 

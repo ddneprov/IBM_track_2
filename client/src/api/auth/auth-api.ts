@@ -11,7 +11,9 @@ export const authAPI = {
      * Аворизация пользователя.
      * @param user Данные пользователя.
      */
-    logIn(user: JSON) {
-        return instance.post(this.controllerName, user).then(res => res.data)
+    logIn(user: UserAuth) {
+        return instance.post(this.controllerName, user)
+                       .then(res => res.data)
+                       .catch(error => error)
     }
 }

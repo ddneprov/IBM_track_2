@@ -4,7 +4,7 @@ import { ProfileHeader } from "./components/ProfileHeader";
 import { ProfileContent } from "./components/Content/ProfileContent";
 import { ProfileFieldType } from "./components/type";
 import { useSelector } from "react-redux";
-import { getCurrentUser, isAuthorization } from "../../../redux/Profile/profile-selectors";
+import { getCurrentUser, isAuthorization, getSelectedUser } from "../../../redux/Profile/profile-selectors";
 import { Redirect } from "react-router-dom";
 import { RouterMap } from "../../../base/types/RouterMap";
 
@@ -19,36 +19,39 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type Props = {
-  user: ProfileFieldType
-}
+/**
+ * Значение идентификатора текущего пользователя.
+ */
+export const currentUserIdDefault = -1
 
 export type MapDispatchToProps = {
   logOut: () => any
 }
 
-export const Profile: React.FC<Props & MapDispatchToProps> = (props) => {
+export const Profile: React.FC<MapDispatchToProps> = (props) => {
   const classes = useStyles()
   const delimiterDefault = " ";
   const isAuth = useSelector(isAuthorization)
   const currentUser = useSelector(getCurrentUser)
+  const selectedUser = useSelector(getSelectedUser)
 
   if (isAuth) {
-    let user = props.user
-
-    if (!props.user) {
+    let user
+    
+    if (Object.keys(selectedUser).length !== 0) {
+      user = selectedUser as ProfileFieldType
+    } else {
       user = currentUser as ProfileFieldType
     }
 
-    const fio = [user?.firstName, user?.secondName, user?.patronymic].join(delimiterDefault)
-
+    const fio = [user?.firstName, user?.lastName, user?.patronymic].join(delimiterDefault)
 
     return (<div className={classes.profile}>
       {currentUser === user ? <ProfileHeader fio={fio}
-                                             logOut={props.logOut} /> : <></>}
+        logOut={props.logOut} /> : <></>}
       <ProfileContent user={user} />
     </div>)
   } else {
-    return <Redirect to={`/${RouterMap.Auth}`}/>
+    return <Redirect to={`/${RouterMap.Auth}`} />
   }
 }

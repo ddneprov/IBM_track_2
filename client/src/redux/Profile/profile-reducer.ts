@@ -1,19 +1,22 @@
+import { config } from './../../react-app-env.d';
+import { managerAPI } from './../../api/manager/manager-api';
 import { BaseThunkType } from './../redux-store';
-import { actions, LOGOUT, SET_USER } from './profile-actions';
+import { actions, LOGOUT, SET_USER, SET_PILOTS, SET_SELECTED_USER } from './profile-actions';
 import { ProfileFieldType } from './../../components/Content/Profile/components/type.d';
-import { config } from '../../react-app-env.d';
 import { InferActionsTypes } from '../redux-store';
 
 import cookie from 'react-cookies'
 import jwt from 'jwt-decode'
-
-import pilots from "../../moc/pilots.json"
+import { isError } from 'util';
 
 const defaultUserObject = {}
 
 let initialState = {
-    currentUser: config.getDebugEnable() ? pilots[0] as ProfileFieldType :
-                                            defaultUserObject
+    currentUser: config.getDebugEnable() ? (require("../../moc/pilots.json") as Array<ProfileFieldType>)[0] as ProfileFieldType :
+                                            defaultUserObject,
+    seletedUser: config.getDebugEnable() ?  (require("../../moc/pilots.json") as Array<ProfileFieldType>)[0] as ProfileFieldType : 
+                                            defaultUserObject,
+    pilots: config.getDebugEnable() ? require("../../moc/pilots_preprod.json") as Array<ProfileFieldType> : new Array<ProfileFieldType>()
 }
 
 /**
@@ -25,7 +28,8 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
             cookie.remove("user")
             return {
                 ...state,
-                currentUser: defaultUserObject
+                currentUser: defaultUserObject,
+                seletedUser: defaultUserObject
             }
         }
         case SET_USER: {
@@ -34,6 +38,20 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
             return {
                 ...state,
                 currentUser: user
+            }
+        }
+        case SET_SELECTED_USER: {
+            const selectedUser = state.pilots.find(pilot => pilot.userLogin === action.userLogin)
+            return {
+                ...state,
+                seletedUser: selectedUser ? selectedUser : 
+                                            defaultUserObject
+            }
+        }
+        case SET_PILOTS: {
+            return {
+                ...state,
+                pilots: action.pilots
             }
         }
         default:
@@ -47,6 +65,23 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
             }
             
             return initialState
+    }
+}
+
+/**
+ * Запрос на получения списка пилотов. 
+ */
+export const requestPilots = (): ThunkType => {
+    return async (dispatch, getState) => {
+        let data = await managerAPI.getAllPilots()
+
+        if (config.getDebugEnable()) {
+            console.log('response: ', data)
+        }
+
+        if (!isError(data)) {
+            dispatch(actions.setPilots(data))
+        }
     }
 }
 

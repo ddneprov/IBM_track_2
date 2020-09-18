@@ -1,6 +1,6 @@
 export enum ProfileFieldLabel {
     firstName = 'Имя',
-    secondName = 'Фамилия',
+    lastName = 'Фамилия',
     patronymic = 'Отчество',
     role = 'Должность',
     standingFromDate = 'Дата начала работы в компании',
@@ -23,8 +23,9 @@ export enum CrewRoleEnum {
 export type CrewRoleType = CrewRoleEnum.twoP | CrewRoleEnum.twoPintern | CrewRoleEnum.kvs | CrewRoleEnum.kvsExam | CrewRoleEnum.intern | CrewRoleEnum.manager
 
 export type ProfileFieldType = {
+    userLogin: string, // Почта
     firstName: string, // Имя
-    secondName: string, // Фамилия
+    lastName: string, // Фамилия
     patronymic: string, // Отчество
     role: CrewRoleType | string, // должность
     standingFromDate: string, // Дата начала работы в компании

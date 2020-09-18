@@ -43,7 +43,7 @@ export const ProfileInfo: React.FC<Props> = ({
             className={classes.profileInfo__icon} />
         <div className={classes.profileInfo__fields}>
             <ProfileField disabled={true} label={ProfileFieldLabel.firstName} value={user.firstName} />
-            <ProfileField disabled={true} label={ProfileFieldLabel.secondName} value={user.secondName} />
+            <ProfileField disabled={true} label={ProfileFieldLabel.lastName} value={user.lastName} />
             <ProfileField disabled={true} label={ProfileFieldLabel.patronymic} value={user.patronymic} />
             <ProfileField disabled={true} label={ProfileFieldLabel.role} value={user.role} />
         </div>

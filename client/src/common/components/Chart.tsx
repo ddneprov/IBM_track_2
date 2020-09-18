@@ -4,7 +4,6 @@ import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell,
 } from 'recharts';
 import { IBM_Default_Color } from "../../base/types/ColorBase";
-import { ProfileFieldType } from "../../components/Content/Profile/components/type";
 
 const chartStyle = {
     width: 500,
@@ -16,14 +15,12 @@ const chartStyle = {
 }
 
 type Props = {
-    pilot: ProfileFieldType,
     characteristic: readonly object[] | undefined,
     classes: string
 }
 
 
 export const Chart: React.FC<Props> = ({
-    pilot,
     characteristic,
     classes
 }) => {

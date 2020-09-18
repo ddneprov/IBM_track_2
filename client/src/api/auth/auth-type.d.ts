@@ -1,14 +1,7 @@
 ﻿/**
- * Класс описывающий объект для авторизации пользователя.
+ * Интерфейс описывающий объект для авторизации пользователя.
  */
-export class UserAuth {
-    constructor(readonly userLogin,
-        readonly userPassword)
-
-    public toJSON() {
-        return {
-            userLogin: this.userLogin,
-            userPassword: this.userPassword
-        }
-    }
+export interface UserAuth {
+    userLogin: string,
+    userPassword: string
 }

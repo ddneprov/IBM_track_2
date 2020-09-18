@@ -1,14 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { List, ListItem, Typography } from "@material-ui/core"
 import Button from '@material-ui/core/Button'
-import { NavLink } from 'react-router-dom'
-import { IBM_Default_Color } from "../../../base/types/ColorBase"
-import { getSeniorityResult, getCharacteristic, getColorBySeniority } from "../../../utils/Profile/characteristic"
-import { RouterMap } from "../../../base/types/RouterMap"
-import { ProfileFieldType } from "../Profile/components/type"
-import { isUserManager } from "../../../utils/Profile/userHelpers"
-const profileIcon_Default = require("../../../assets/profileIcon_Default.png")
+import { IBM_Default_Color } from "../../../../../../base/types/ColorBase"
+import { getSeniorityResult, getCharacteristic, getColorBySeniority } from "../../../../../../utils/Profile/characteristic"
+import { ProfileFieldType } from "../../type"
+import { isUserManager } from "../../../../../../utils/Profile/userHelpers"
+import { getPilots } from "../../../../../../redux/Profile/profile-selectors"
+import { useSelector, useDispatch } from "react-redux"
+import { requestPilots } from "../../../../../../redux/Profile/profile-reducer"
+const profileIcon_Default = require("../../../../../../assets/profileIcon_Default.png")
 
 const seniorityResSize = '4rem'
 
@@ -17,12 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
         pilotsList: {
             display: 'flex',
             width: '95%',
-            height: '35rem',
+            height: '25rem',
             flexDirection: 'column',
             margin: theme.spacing(2),
             backgroundColor: IBM_Default_Color.white,
             borderRadius: '20px',
-            boxShadow: '0px 4px 20px 5px rgba(0, 0, 0, 0.25)',
             overflow: 'auto',
             '&::-webkit-scrollbar': {
                 width: '1em'
@@ -67,26 +67,35 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const PilotsList: React.FC = () => {
-    const classes = useStyles()
-    
-    if (isUserManager()) {
-        const pilots = require("../../../moc/pilots_preprod.json")
+export type MapDispatchToProps = {
+    setSelectedUser: (userLogin: string) => any
+}
 
+export const PilotsList: React.FC<MapDispatchToProps> = (props) => {
+    const classes = useStyles()
+    let pilots = useSelector(getPilots)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (pilots.length === 0) {
+            dispatch(requestPilots())
+        }
+    })
+
+    if (isUserManager() && pilots.length !== 0) {
         const getFIO = (pilot: any) => {
-            debugger
             const delimiterDefault = " "
             return [pilot.firstName,
-            pilot.secondName[0] + '.',
+            pilot.lastName[0] + '.',
             pilot.patronymic[0] + '.'].join(delimiterDefault)
         }
 
         return (<List className={classes.pilotsList}>
             {pilots.map((pilot: ProfileFieldType, key: string | number | null | undefined) => (<ListItem className={classes.pilotsList__item}
-                key={key}>
+                key={pilot.userLogin}>
                 <Button fullWidth={true}
-                    component={NavLink}
-                    to={`/${RouterMap.Profile}/${key}`}>
+                    onClick={() => props.setSelectedUser(pilot.userLogin)}>
                     <img src={profileIcon_Default} alt="logo" className={classes.pilotsList__item_icon} />
                     <Typography className={classes.pilotsList__item_fio}
                         variant='h6'>

@@ -8,6 +8,7 @@ type Props = {
     value: string | number | readonly string[] | undefined,
     errorMessage: string | undefined
     isError: boolean | "" | undefined,
+    inputType:  "text" | "password",
     handleChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined
     handleBlur: ((event: React.FocusEvent<HTMLInputElement>) => void) | undefined
 } & IFormInput
@@ -49,6 +50,7 @@ export const FormInput: React.FC<Props> = ({
     errorMessage,
     isError,
     placeholder,
+    inputType,
     handleChange,
     handleBlur
 }) => {
@@ -61,7 +63,7 @@ export const FormInput: React.FC<Props> = ({
         <input
             id={label}
             placeholder={placeholder}
-            type="text"
+            type={inputType}
             value={value}
             onChange={handleChange}
             onBlur={handleBlur}
