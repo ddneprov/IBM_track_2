@@ -35,10 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
             },
             '&::-webkit-scrollbar-thumb': {
                 borderRadius: '50px',
-                backgroundColor: IBM_Default_Color.blue,
-                backgroundImage: `-webkit-gradient(linear, 0 0, 0 100%,
-                              color-stop(.5, rgba(255, 255, 255, .2)),
-                                      color-stop(.5, transparent), to(transparent))`
+                backgroundColor: IBM_Default_Color.blue
             }
         },
         pilotsList__item: {
