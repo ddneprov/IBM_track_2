@@ -6,7 +6,7 @@ import {
 import { IBM_Default_Color } from "../../base/types/ColorBase";
 
 const chartStyle = {
-    width: 500,
+    width: 300,
     height: 200,
     margin: {
         top: 5, right: 30, left: 20, bottom: 5

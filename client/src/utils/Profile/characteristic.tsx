@@ -45,16 +45,16 @@ export const getCharacteristic = (pilot: ProfileFieldType) => {
 
     return [
         {
-            name: 'Experience', star: convertCharacteristic(expYear), // Опыт работы
+            name: 'EXP', star: convertCharacteristic(expYear), // Опыт работы
         },
         {
-            name: 'Length', star: convertCharacteristic(length) // Опыт работы в текущей должности
+            name: 'LEN', star: convertCharacteristic(length) // Опыт работы в текущей должности
         },
         {
-            name: 'Clearance level', star: convertCharacteristic(expYear + length) // Уровень доступа
+            name: 'LVL', star: convertCharacteristic(expYear + length) // Уровень доступа
         },
         {
-            name: 'Quality', star: convertCharacteristic(pilot.reliabilityIndex) // Качество выполнение своих обязаностей
+            name: 'Q', star: convertCharacteristic(pilot.reliabilityIndex) // Качество выполнение своих обязаностей
         },
         {
             name: 'R/P', star: convertCharacteristic(pilot.rewardsAndPunishments) // Разность между кол-вом удовл. заявок и не удовл.

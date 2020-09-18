@@ -10,6 +10,7 @@ import { FormInput } from "./FormInput";
 import { Button } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
 import { config } from "../../../react-app-env.d";
+import { IBM_Style } from "../../../base/types/StyleBase";
 
 export interface IFormState {
     login: IFormInput,
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         autorizationForm__button_submit: {
             backgroundColor: IBM_Default_Color.black,
-            borderRadius: '50px',
+            borderRadius: IBM_Style.borderRadius,
             color: IBM_Default_Color.white,
             margin: `${theme.spacing(2)}px ${theme.spacing(5)}px`,
             padding: theme.spacing(1),

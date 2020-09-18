@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { IFormInput } from "./type"
 import { IBM_Default_Color } from "../../../base/types/ColorBase"
+import { IBM_Style } from "../../../base/types/StyleBase"
 
 type Props = {
     value: string | number | readonly string[] | undefined,
@@ -23,12 +24,13 @@ const useStyles = makeStyles((theme: Theme) =>
             fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
             fontWeight: 'bold',
             color: IBM_Default_Color.black,
-            margin: theme.spacing(1)
+            margin: theme.spacing(1),
+            marginLeft: theme.spacing(2)
         },
         form__input: {
             width: '100%',
             border: `3px solid ${IBM_Default_Color.black}`,
-            borderRadius: '25px',
+            borderRadius: IBM_Style.borderRadius,
             boxSizing: 'border-box',
             padding: theme.spacing(1.5),
             outline: 'none'

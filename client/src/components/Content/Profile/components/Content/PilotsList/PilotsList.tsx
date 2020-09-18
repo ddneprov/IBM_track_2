@@ -9,6 +9,7 @@ import { isUserManager } from "../../../../../../utils/Profile/userHelpers"
 import { getPilots } from "../../../../../../redux/Profile/profile-selectors"
 import { useSelector, useDispatch } from "react-redux"
 import { requestPilots } from "../../../../../../redux/Profile/profile-reducer"
+import { IBM_Style } from "../../../../../../base/types/StyleBase"
 const profileIcon_Default = require("../../../../../../assets/profileIcon_Default.png")
 
 const seniorityResSize = '4rem'
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'column',
             margin: theme.spacing(2),
             backgroundColor: IBM_Default_Color.white,
-            borderRadius: '20px',
+            borderRadius: IBM_Style.borderRadius,
             overflow: 'auto',
             '&::-webkit-scrollbar': {
                 width: '1em'
@@ -34,10 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
             },
             '&::-webkit-scrollbar-thumb': {
                 borderRadius: '50px',
-                backgroundColor: IBM_Default_Color.blue,
-                backgroundImage: `-webkit-gradient(linear, 0 0, 0 100%,
-                              color-stop(.5, rgba(255, 255, 255, .2)),
-                                      color-stop(.5, transparent), to(transparent))`
+                backgroundColor: IBM_Default_Color.blue
             }
         },
         pilotsList__item: {
