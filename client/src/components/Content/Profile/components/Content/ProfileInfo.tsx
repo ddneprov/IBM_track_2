@@ -5,6 +5,7 @@ import profileIcon from '../../../../../assets/profile__photo.png'
 import { ProfileFieldLabel, ProfileFieldType } from "../type.d"
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase"
 import { ProfileField } from "./components/ProfileField"
+import { IBM_Style } from "../../../../../base/types/StyleBase"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             padding: theme.spacing(2),
-            borderRadius: '10px',
+            borderRadius: IBM_Style.borderRadius,
             backgroundColor: IBM_Default_Color.blue
         }
     })

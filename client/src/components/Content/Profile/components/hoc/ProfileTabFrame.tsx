@@ -2,6 +2,7 @@ import React from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { Typography } from "@material-ui/core";
 import { IBM_Default_Color } from "../../../../../base/types/ColorBase";
+import { IBM_Style } from "../../../../../base/types/StyleBase";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -14,11 +15,11 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingBottom: theme.spacing(5),
             width: '35rem',
             backgroundColor: IBM_Default_Color.white,
-            borderRadius: '10px'
+            borderRadius: IBM_Style.borderRadius
         },
         tab__item_title: {
             textTransform: 'uppercase',
-            borderRadius: '0px 0px 10px 10px',
+            borderRadius: `0px 0px ${IBM_Style.borderRadius} ${IBM_Style.borderRadius}`,
             padding: '1rem 3rem',
             backgroundColor: IBM_Default_Color.black,
             color: IBM_Default_Color.white,

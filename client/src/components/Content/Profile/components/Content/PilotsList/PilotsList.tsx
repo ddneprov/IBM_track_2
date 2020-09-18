@@ -9,6 +9,7 @@ import { isUserManager } from "../../../../../../utils/Profile/userHelpers"
 import { getPilots } from "../../../../../../redux/Profile/profile-selectors"
 import { useSelector, useDispatch } from "react-redux"
 import { requestPilots } from "../../../../../../redux/Profile/profile-reducer"
+import { IBM_Style } from "../../../../../../base/types/StyleBase"
 const profileIcon_Default = require("../../../../../../assets/profileIcon_Default.png")
 
 const seniorityResSize = '4rem'
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'column',
             margin: theme.spacing(2),
             backgroundColor: IBM_Default_Color.white,
-            borderRadius: '20px',
+            borderRadius: IBM_Style.borderRadius,
             overflow: 'auto',
             '&::-webkit-scrollbar': {
                 width: '1em'

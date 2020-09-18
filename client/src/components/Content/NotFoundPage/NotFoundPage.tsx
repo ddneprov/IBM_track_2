@@ -1,6 +1,7 @@
 import React from "react"
 import { makeStyles, createStyles } from "@material-ui/core/styles"
 import { IBM_Default_Color } from "../../../base/types/ColorBase";
+import { IBM_Style } from "../../../base/types/StyleBase";
 
 const useStyles = makeStyles(
     createStyles({
@@ -8,7 +9,7 @@ const useStyles = makeStyles(
         textAlign: "center",
         padding: "20px 30px",
         background: IBM_Default_Color.white,
-        borderRadius: '20px',
+        borderRadius: IBM_Style.borderRadius,
         marginTop: "10px"
       },
       error__container_header: {
