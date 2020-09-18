@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
             fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
             fontWeight: 'bold',
             color: IBM_Default_Color.black,
-            margin: theme.spacing(1)
+            margin: theme.spacing(1),
+            marginLeft: theme.spacing(2)
         },
         form__input: {
             width: '100%',
