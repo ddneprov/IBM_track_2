@@ -49,7 +49,6 @@ export const ProfileHeader: React.FC<MapStateToProps & MapDispatchToProps> = (pr
                 >{props.fio}</Typography>
     <Button type="submit"
             variant="contained"
-            color="secondary"
             onClick={props.logOut}
             className={classes.logOut_button}>
       Log out
