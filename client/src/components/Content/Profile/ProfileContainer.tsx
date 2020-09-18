@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter, RouteComponentProps, Redirect } from "react-router-dom"
 import { compose } from "redux"
 import { connect } from 'react-redux';
-import { Profile, MapDispatchToProps, currentUserIdDefault } from './Profile';
+import { Profile, MapDispatchToProps } from './Profile';
 import { AppStateType } from '../../../redux/redux-store'
 import { logOut } from '../../../redux/Profile/profile-actions'
 import { RouterMap } from '../../../base/types/RouterMap';
@@ -23,13 +23,9 @@ type Props = ReturnType<typeof mapStateToProps> &
 
 class ProfileClassComponent extends React.Component<Props> {
     render() {
-        const userId = Number(this.props.match.params.userId)
-
         // Если пользователь авторизован.
         if (Object.keys(this.props.currentUser).length > 0) {
-            return <Profile userId={userId ? userId : 
-                                             currentUserIdDefault}
-                            logOut={this.props.logOut} />
+            return <Profile logOut={this.props.logOut}/>
         } else {
             return <Redirect to={`/${RouterMap.Auth}`} />
         }
@@ -40,5 +36,7 @@ export const ProfileContainer = compose<React.ComponentType>(
     withRouter
 )(connect<{}, MapDispatchToProps, {}, AppStateType>(
     mapStateToProps,
-    { logOut }
+    { 
+        logOut
+    }
 )(ProfileClassComponent))

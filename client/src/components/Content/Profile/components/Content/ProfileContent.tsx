@@ -4,8 +4,10 @@ import { ProfileTabFrame } from "../hoc/ProfileTabFrame";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileFieldType } from "../type";
 import { ProfileSeniority } from "./ProfileSeniority";
-import { PilotsList } from "./PilotsList";
 import { isManager } from "../../../../../utils/Profile/userHelpers";
+import { PilotsListContainer } from "./PilotsList/PilotsListContainer";
+import { useSelector } from "react-redux";
+import { getCurrentUser } from "../../../../../redux/Profile/profile-selectors";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +28,7 @@ export const ProfileContent: React.FC<Props> = ({
   user
 }) => {
   const classes = useStyles()
+  const currentUser = useSelector(getCurrentUser) as ProfileFieldType
 
   const titleTabs = {
     pilotsList: 'Pilots List',
@@ -34,14 +37,10 @@ export const ProfileContent: React.FC<Props> = ({
   }
 
   return (<div className={classes.profile__content}>
-    {isManager(user.role) ? <ProfileTabFrame title={titleTabs.pilotsList} Component={<PilotsList />} /> : <></>}
+    {isManager(currentUser.role) ? <ProfileTabFrame title={titleTabs.pilotsList} Component={<PilotsListContainer />} /> : <></>}
     <ProfileTabFrame title={titleTabs.seniority}
       Component={<ProfileSeniority user={user} />} />
     <ProfileTabFrame title={titleTabs.profileInfo}
       Component={<ProfileInfo user={user} />} />
-    {/* <Divider orientation='vertical'
-      variant='middle' />
-        <ProfileTabFrame title={titleTabs.seniority}
-                     Component={<ProfileInfo />}/> */}
   </div>)
 }

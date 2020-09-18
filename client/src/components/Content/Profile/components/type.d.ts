@@ -23,6 +23,7 @@ export enum CrewRoleEnum {
 export type CrewRoleType = CrewRoleEnum.twoP | CrewRoleEnum.twoPintern | CrewRoleEnum.kvs | CrewRoleEnum.kvsExam | CrewRoleEnum.intern | CrewRoleEnum.manager
 
 export type ProfileFieldType = {
+    userLogin: string, // Почта
     firstName: string, // Имя
     lastName: string, // Фамилия
     patronymic: string, // Отчество

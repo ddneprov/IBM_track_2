@@ -4,7 +4,7 @@ import { ProfileHeader } from "./components/ProfileHeader";
 import { ProfileContent } from "./components/Content/ProfileContent";
 import { ProfileFieldType } from "./components/type";
 import { useSelector } from "react-redux";
-import { getCurrentUser, isAuthorization, getPilots } from "../../../redux/Profile/profile-selectors";
+import { getCurrentUser, isAuthorization, getSelectedUser } from "../../../redux/Profile/profile-selectors";
 import { Redirect } from "react-router-dom";
 import { RouterMap } from "../../../base/types/RouterMap";
 
@@ -24,28 +24,24 @@ const useStyles = makeStyles((theme: Theme) =>
  */
 export const currentUserIdDefault = -1
 
-type Props = {
-  userId: number
-}
-
 export type MapDispatchToProps = {
   logOut: () => any
 }
 
-export const Profile: React.FC<Props & MapDispatchToProps> = (props) => {
+export const Profile: React.FC<MapDispatchToProps> = (props) => {
   const classes = useStyles()
   const delimiterDefault = " ";
   const isAuth = useSelector(isAuthorization)
   const currentUser = useSelector(getCurrentUser)
-  const pilots = useSelector(getPilots)
+  const selectedUser = useSelector(getSelectedUser)
 
   if (isAuth) {
     let user
-
-    if (props.userId === currentUserIdDefault) {
-      user = currentUser as ProfileFieldType
+    
+    if (Object.keys(selectedUser).length !== 0) {
+      user = selectedUser as ProfileFieldType
     } else {
-      user = pilots[props.userId]
+      user = currentUser as ProfileFieldType
     }
 
     const fio = [user?.firstName, user?.lastName, user?.patronymic].join(delimiterDefault)

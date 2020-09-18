@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { isAuthorization } from "../../../redux/Profile/profile-selectors";
 import { Redirect } from "react-router-dom";
 import { ProfileFieldType } from "../Profile/components/type";
-import { isManager } from "../../../utils/Profile/userHelpers";
 import { RouterMap } from "../../../base/types/RouterMap";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -49,7 +48,7 @@ export type MapStateToProps = {
 export const Autorization: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
   const classes = useStyles()
   const isAuth = useSelector(isAuthorization)
-  if (isAuth && isManager(props.currentUser.role)) {
+  if (isAuth) {
     return <Redirect to={`/${RouterMap.Profile}`}/>
   }
 
