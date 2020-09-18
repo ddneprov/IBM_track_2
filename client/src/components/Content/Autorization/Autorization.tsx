@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',     /*Центрирование по вертикали */
       flexFlow: 'column wrap',
       boxShadow: '0px 4px 20px 5px rgba(0, 0, 0, 0.25)',
-      backgroundColor: IBM_Default_Color.white
+      backgroundColor: IBM_Default_Color.white,
+      borderRadius: '10px'
     },
     autorization__icon: {
       marginTop: '2rem',
