@@ -66,3 +66,17 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Docker publish example
+
+1) Создаем образ для Docker
+
+### `docker build -t react-ui:1.0 .`
+
+2) Создаем контейнер с именем `reactui` на основе созданного образа
+
+### `docker run -d --name reactui -p 9000:9000 react-ui:1.0`
+
+3) Открываем браузер по адресу
+
+### `http://localhost:9000`
